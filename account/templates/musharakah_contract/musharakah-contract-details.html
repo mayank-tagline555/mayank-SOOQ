@@ -1,0 +1,1763 @@
+{% extends "musharakah_contract/base.html" %}
+{% load i18n static %}
+
+{% block title %}Musharakah Agreement{% endblock %}
+
+{% block content %}
+
+<table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; margin-bottom: 20px;">
+  <tr>
+    <td style="width: 50%; padding: 20px 10px 10px 0; vertical-align: top;">
+      <p style="font-weight: bold; font-size: 16px; margin: 0;">Musharakah Agreement</p>
+      <p style="margin: 2px 0; font-size: 14px;">Version: V1.2</p>
+      <p style="margin: 2px 0; font-size: 14px;">Governing Law: Kingdom of Bahrain</p>
+      <p style="margin: 2px 0; font-size: 14px;">This version supersedes all previous drafts or unsigned versions.</p>
+    </td>
+    <td class="rtl" dir="rtl" style="width: 50%; padding: 20px 0 10px 10px; vertical-align: top; text-align: right;">
+      <p style="font-weight: bold; font-size: 16px; margin: 0;">اتفاقية المشاركة</p>
+      <p style="margin: 2px 0; font-size: 14px;">الإصدار: V1.2</p>
+      <p style="margin: 2px 0; font-size: 14px;">القانون الحاكم: مملكة البحرين</p>
+      <p style="margin: 2px 0; font-size: 14px;">هذا الإصدار يحل محل جميع المسودات السابقة أو النسخ غير الموقعة.</p>
+    </td>
+  </tr>
+</table>
+
+<table class="agreement-table">
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <h2 style="text-align: center;">MUSHARAKAH AGREEMENT</h2>
+    </td>
+    <td class="seperator"></td>
+    <td>
+      <h2 style="text-align: center;">اتفاقیة المشاركة</h2>
+    </td>
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>
+        This Musharakah Agreement ('Agreement') is made and entered into this
+        {{ musharakah_contract.approved_at|date:"j F Y" }}, by and between:
+      </p>
+      <ul>
+        <li><strong>Provider:</strong> {{ musharakah_contract.investor.name }}, with registered address at {{ musharakah_contract.investor.address|default:"N/A" }}.</li>
+        <li><strong>Jeweler/Designer:</strong> {{ musharakah_contract.jeweler.name }}, with registered address at {{ musharakah_contract.jeweler.address|default:"N/A" }}.</li>
+      </ul>
+      <p>Both parties are hereinafter referred to collectively as the 'Parties' or individually as a 'Party'.</p>
+      <p>The Gold Market Platform W.L.L. is referred to here as "Sooq Al Thahab".</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl" dir="rtl">
+      <p>تم إبرام ھذه اتفاقیة المشاركة ('الاتفاقیة') في تاریخ {{ musharakah_contract.approved_at|date:"j F Y" }}, بین كل من :</p>
+      <ul>
+        <li><strong>المزود:</strong> {{ musharakah_contract.investor.name }}, العنوان: {{ musharakah_contract.investor.address|default:"N/A" }}.</li>
+        <li><strong>الصائغ/المصمم:</strong> {{ musharakah_contract.jeweler.name }}, العنوان: {{ musharakah_contract.jeweler.address|default:"N/A" }}.</li>
+      </ul>
+      <p>ویُشار إلى الطرفین مجتمعین بـ "الأطراف" أو فردیاً بـ "الطرف".</p>
+      <p>ویُشار إلى شركة سوق الذھب الإلكترونیة ذ.م.م في ھذه الاتفاقیة بـ" سوق الذھب".</p>
+    </td>
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">1.0</td>
+    <td><h3>OBJECTIVE OF THE AGREEMENT</h3></td>
+    <td class="seperator"></td>
+    <td class="rtl" dir="rtl"><h3>هدف الاتفاقیة</h3></td>
+    <td class="point-no rtl">٠.١</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>
+        The objective of this Musharakah Agreement is to establish a partnership for the creation of jewelry, whereby the Provider will contribute precious metals/stones and the Jeweler will contribute design expertise and manufacturing cost and marketing. The Jeweler will then approach a manufacturer to convert the precious metals/stones into finished jewelry products. The revenue of the sales, will be used to buy back the amount of precious metals/stones used in the sales as well as the manufacturing cost. The profits generated from the sale of the jewelry shall be shared between the Parties in accordance with the terms of this Agreement.
+      </p>
+    </td>
+    <td class="seperator"></td>
+    <td class="rtl" dir="rtl">
+      <p>
+        ھدف اتفاقیة المشاركة ھذه ھو إنشاء شراكة لتصمیم وتصنیع المجوھرات، حیث یساھم المزود بالمعادن/الأحجار الكریمة، ویقدم الصائغ/المصمم خبرتھ في التصمیم ویتحمل تكالیف التصنیع والتسویق. یتولى الصائغ/المصمم التعاقد مع جھة تصنیع لتحویل المعادن/الأحجار الكریمة إلى منتجات مجوھرات نھائیة. یتم استخدام إیرادات البیع لإعادة شراء المعادن/الأحجار الكریمة بالإضافة إلى تكالیف التصنیع. یتم تقاسم الأرباح الناتجة بین الطرفین وفقاً لشروط ھذه الاتفاقیة.
+      </p>
+    </td>
+    <td class="point-no rtl"></td>
+  </tr>
+  <tr>
+    <td class="point-no">2.0</td>
+    <td><h3>PARTY CONTRIBUTIONS</h3></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h3>مساهمات الأطراف</h3></td>
+    <td class="point-no rtl">٢</td>
+  </tr>
+  <tr>
+    <td class="point-no">2.1</td>
+    <td><h4>Provider's Contribution</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>مساهمة المزود</h4></td>
+    <td class="point-no rtl">١.٢</td>
+  </tr>
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>The Provider agrees to provide the following <strong>precious metals/stones</strong> to the Jeweler for the purpose of producing jewelry, which will be crafted according to the Jeweler's designs:</p>
+
+      <ul>
+        {% for material in musharakah_contract.materials %}
+          <li>
+            {{ material.item }}
+            {% if material.carat_type %}
+              {{ material.carat_type }}
+            {% endif %}
+            - {{ material.weight }} {{ material.weight_unit }} - {{ material.quantity }} Qty
+          </li>
+        {% endfor %}
+      </ul>
+
+      <p>The value of each precious metals/stones shall be calculated based on the <strong>current market rate</strong> at the time of Musharkah Agreement. The <strong>total value</strong> of the precious metals/stones provided by the Provider is agreed upon as <strong>BHD {{ musharakah_contract.precious_items_value|default:0 }}</strong>. The total quantity and type of precious metals/stones provided shall be recorded in the Jeweler's <strong>precious metals/stones Wallet</strong> for transparency.</p>
+
+      <p>The Provider retains <strong>full ownership</strong> of all contributed precious metals/stones until they are either sold as finished jewelry or returned in accordance with this Agreement. The Jeweler shall not transfer, pledge, or utilize the precious metals/stones for any purpose <strong>outside the scope of this Musharakah.</strong></p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>:يوافق المزود على تزويد الصائغ/المصمم بـ <strong>المعادن/الأحجار</strong> الكريمة التالية لغرض إنتاج المجوهرات، والتي سيتم تصنيعها وفقًا لتصاميم الصائغ/المصمم</p>
+
+      <ul>
+        {% for material in musharakah_contract.materials %}
+          <li>{{ material.item }} {{ material.carat_type }} - {{ material.weight }} {{ material.weight_unit }} {{ material.quantity }}(Qty) ({{ material.type }})</li>
+        {% endfor %}
+      </ul>
+
+      <p>يتم احتساب قيمة كل معدن أو حجر كريم بناءً على <strong>سعر السوق الحالي</strong> في وقت إبرام اتفاقية المشاركة، وقد تم الاتفاق على أن <strong>القيمة الإجمالية</strong> للمعادن و/أو الأحجار الكريمة المقدمة من المزود هي <strong>BHD {{ musharakah_contract.precious_items_value|default:0 }}</strong>، كما يتم تسجيل إجمالي الكمية ونوع المعادن و/أو الأحجار الكريمة المقدمة في <strong>محفظة المعادن/الأحجار الكريمة الخاصة بالصائغ/المصمم</strong> وذلك لضمان الشفافية.</p>
+
+      <p>يحتفظ المزود <strong>بالملكية الكاملة</strong> لجميع المعادن و/أو الأحجار الكريمة المقدمة إلى أن يتم بيعها كمجوهرات مكتملة الصنع أو إرجاعها وفقًا لأحكام هذه الاتفاقية، ولا يجوز للصائغ/المصمم نقلها أو رهنها أو استخدامها لأي غرض <strong>خارج نطاق هذه المشاركة</strong>.</p>
+
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+  <tr>
+    <td class="point-no">2.2</td>
+    <td><h4>Jeweler's Contribution</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>ساهمة الصائغ/المصمم</h4></td>
+    <td class="point-no rtl">٢.٢</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>
+        The Jeweler agrees to provide the jewelry designs and oversee the entire process of converting the precious metals/stones into finished jewelry products.
+        The Jeweler's contribution to the Musharakah is limited to their original design work, which is valued and agreed upon at
+        BHD {{ musharakah_contract.design_value|default:0 }}. This design value shall constitute the Jeweler's capital contribution in this Musharakah.
+        The designs contributed under this Agreement include the following:
+      </p>
+
+      <ul>
+        {% for design in musharakah_contract.designs %}
+          <li>{{ design }}</li>
+        {% endfor %}
+      </ul>
+
+      <p>
+        The Jeweler shall also manage and pay for manufacturing, taxes, Sooq Al Thahab service fees, and other operational costs required for production and sale.
+        These costs shall not be treated as capital but shall be recoverable in full from gross sales revenue before profit calculation, in accordance with Clause 4.2.
+      </p>
+
+      <p>
+        All intellectual property related to the designs contributed by the Jeweler shall remain the sole property of the Jeweler.
+        Any branding, marketing materials, or packaging created by Sooq Al Thahab remains its property unless otherwise agreed in writing.
+      </p>
+
+      <p>
+        Sole ownership applies to original designs submitted by the Jeweler, including any variations or modifications made by manufacturers or platform partners, unless otherwise agreed in writing.
+      </p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>
+        افق الصائغ/المصمم على تقديم تصاميم المجوهرات والإشراف الكامل على عملية تحويل المعادن/الأحجار الكريمة إلى منتجات مجوهرات نهائية. وتُعد مساهمة الصائغ/المصمم في هذه المشاركة مقتصرة على أعماله الأصلية في التصميم، والتي تُقدر وتُتفق على قيمتها بمبلغ {{ musharakah_contract.design_value|default:0 }} دينار بحريني. وتشكل هذه القيمة الرأسمالية مساهمة الصائغ/المصمم في المشاركة.
+تشمل التصاميم المقدمة بموجب هذه الاتفاقية ما يلي:
+      </p>
+
+      <ul>
+        {% for design in musharakah_contract.designs %}
+          <li>{{ design }}</li>
+        {% endfor %}
+      </ul>
+
+      <p>
+        تولى الصائغ/المصمم أيضًا إدارة ودفع تكاليف التصنيع، والضرائب، ورسوم خدمات سوق الذهب، وغيرها من التكاليف التشغيلية اللازمة للإنتاج والبيع. ولا تُعامل هذه التكاليف كرأس مال، بل تُسترد بالكامل من إجمالي إيرادات البيع قبل احتساب الأرباح، وذلك وفقًا للمادة ٤.٢.
+      </p>
+
+      <p>
+        تظل جميع حقوق الملكية الفكرية المتعلقة بالتصاميم المقدمة من الصائغ/المصمم ملكًا حصريًا له. وتبقى أي مواد تسويقية أو تصميمات علامات تجارية أو تغليف تم إنشاؤها من قبل سوق الذهب ملكًا له، ما لم يتم الاتفاق كتابةً على خلاف ذلك.
+      </p>
+
+      <p>
+        ُطبق الملكية الحصرية على التصاميم الأصلية المقدمة من الصائغ/المصمم، بما في ذلك أي تعديلات أو تغييرات يقوم بها المصنعون أو شركاء المنصة، ما لم يتم الاتفاق كتابةً على خلاف ذلك.
+      </p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">2.3</td>
+    <td><h4>Agreed Designs</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>لتصاميم المعتمدة</h4></td>
+    <td class="point-no rtl">٢.٣</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>
+        The jewelry designs forming the Jeweler's contribution under this Agreement have been mutually reviewed and accepted by both Parties.
+        These designs are digitally stored and timestamped within the Sooq Al Thahab digital platform/app,
+        and shall be treated as the official and binding design scope under this Musharakah.
+        Any modification or addition to these designs must be mutually agreed upon in writing and confirmed through Sooq Al Thahab prior to production.
+      </p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>
+        لقد تم استعراض تصاميم المجوهرات التي تشكل مساهمة الصائغ/المصمم بموجب هذه الاتفاقية والموافقة عليها من قبل الطرفين. يتم حفظ هذه التصاميم رقميًا ومؤرخة بتوقيت رقمي ضمن تطبيق/منصة سوق الذهب، وتُعتبر النطاق الرسمي والملزم للتصاميم في إطار هذه المشاركة. ويجب أن يتم الاتفاق كتابةً على أي تعديل أو إضافة لهذه التصاميم، وتأكيدها من خلال سوق الذهب قبل الشروع في الإنتاج.
+      </p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">3.0</td>
+    <td><h3>MANUFACTURING PROCESS</h3></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h3>عملية التصنيع</h3></td>
+    <td class="point-no rtl">٣.٠</td>
+  </tr>
+
+  <tr>
+    <td class="point-no">3.1</td>
+    <td><h4>Manufacturer Selection</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>اختيار المُصنِّع</h4></td>
+    <td class="point-no rtl">٣.١</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>
+        The Jeweler shall be responsible for selecting a suitable manufacturer to convert the precious metals/stones into the final jewelry products.
+        The Jeweler agrees to ensure that the manufacturer follows the agreed-upon designs and specifications and produces the jewelry according to the highest standards of craftsmanship and quality.
+      </p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>
+        يتحمل الصائغ/المصمم مسؤولية اختيار مُصنِّع مناسب لتحويل المعادن/الأحجار الكريمة إلى منتجات مجوهرات نهائية. ويوافق الصائغ/المصمم على التأكد من أن المُصنِّع يلتزم بالتصاميم والمواصفات المتفق عليها، وأنه يُنتج المجوهرات وفقًا لأعلى معايير الحرفية والجودة.
+      </p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">3.2</td>
+    <td><h4>Manufacturing Costs</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>تكالیف التصنیع</h4></td>
+    <td class="point-no rtl">٣.٢</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>
+        The cost of manufacturing the jewelry (e.g., the fee charged by the manufacturer) shall be borne by the Jeweler.
+        The manufacturing costs incurred by the Jeweler shall be transparently documented and deducted from the total revenue
+        before calculating the profit to be shared between the Parties.
+      </p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>
+        يتحمل الصائغ/المصمم تكاليف التصنيع الخاصة بالمجوهرات (مثل الأجور التي يفرضها المُصنِّع). ويجب توثيق تكاليف التصنيع التي يتكبدها الصائغ/المصمم بشكل شفاف، وتُخصم من إجمالي الإيرادات قبل حساب الأرباح التي سيتم تقاسمها بين الأطراف.
+      </p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">4.0</td>
+    <td><h3>PROFIT AND LOSS SHARING</h3></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h3>توزيع الأرباح والخسائر</h3></td>
+    <td class="point-no rtl">٤.٠</td>
+  </tr>
+
+  <tr>
+    <td class="point-no">4.1</td>
+    <td><h4>Capital Valuation and Profit-Sharing Ratio</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>قييم رأس المال ونسبة تقاسم الأرباح</h4></td>
+    <td class="point-no rtl">٤.١</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>The Parties agree that the total Musharakah capital comprises:</p>
+      <ul>
+        <li>The Provider's contribution of precious metals/stones valued at
+          <strong>BHD {{ musharakah_contract.precious_items_value }}</strong></li>
+        <li>The Jeweler's contribution of design value, fixed and agreed at
+          <strong>BHD {{ musharakah_contract.design_value }}</strong></li>
+      </ul>
+
+      <p>Based on this valuation, the total business capital amounts to
+        <strong>BHD {{ musharakah_contract.business_capital_value }}</strong>.
+        Accordingly, the profit-sharing ratio shall be:</p>
+
+      <ul>
+        <li><strong>Provider:</strong> {{ musharakah_contract.investor_profit_sharing_ratio }} %</li>
+        <li><strong>Jeweler:</strong> {{ musharakah_contract.jeweler_profit_sharing_ratio }} %</li>
+      </ul>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>يتفق الطرفان على أن رأس مال المشاركة الإجمالي يتكوّن من:</p>
+      <ul>
+        <li>مساهمة المزود من المعادن و/أو الأحجار الكريمة بقيمة <strong>BHD {{ musharakah_contract.precious_items_value }}</strong></li>
+        <li>مساهمة الصائغ/المصمم بقيمة التصاميم المتفق عليها والمحددة بمبلغ <strong>BHD {{ musharakah_contract.design_value }}</strong></li>
+      </ul>
+
+      <p>وبناءً على هذا التقييم، يبلغ إجمالي رأس المال التجاري مبلغ <strong>BHD {{ musharakah_contract.business_capital_value }}</strong>، وبناءً عليه تكون نسبة تقاسم الأرباح على النحو التالي:</p>
+
+      <ul>
+        <li><strong>المزود:</strong> {{ musharakah_contract.investor_profit_sharing_ratio }} %</li>
+        <li><strong>الصائغ/المصمم:</strong> {{ musharakah_contract.jeweler_profit_sharing_ratio }} %</li>
+      </ul>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">4.2</td>
+    <td><h4>Recoverable Expenses Covered by Jeweler</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>النفقات القابلة للاسترداد التي یتحملھا الصائغ</h4></td>
+    <td class="point-no rtl">٤.٢</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>The Jeweler agrees to cover certain business execution costs out of pocket, which are directly and exclusively related to the production, sale, and delivery of jewelry under this specific Musharakah. These <strong>Recoverable Expenses</strong> include:</p>
+      <ul>
+        <li>Any manufacturing fees or related charges to the manufacturing process.</li>
+        <li>Any precious metals/stones provided by the Jeweler other than those provided via this Musharakah Agreement.</li>
+        <li>Taxes or duties directly imposed on the sale of jewelry produced under this Agreement.</li>
+        <li>Sooq Al Thahab fees applicable to this specific jewelry batch.</li>
+        <li>Delivery and shipping costs related to customer orders originating from this Musharakah.</li>
+      </ul>
+      <p>These expenses shall be transparently documented by the Jeweler and are recoverable from gross revenue prior to calculating profit.</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>يوافق الصائغ/المصمم على تغطية بعض تكاليف تنفيذ العمل من ماله الخاص، والتي تكون مرتبطة بشكل مباشر وحصري بإنتاج وبيع وتسليم المجوهرات ضمن هذه المشاركة تحديدًا، وتُعد هذه المصاريف <strong>مصاريف قابلة للاسترداد</strong> وتشمل ما يلي:</p>
+
+      <ul>
+        <li>أي رسوم تصنيع أو تكاليف مرتبطة بعملية التصنيع؛</li>
+        <li>أي معادن/أحجار كريمة يوفرها الصائغ/المصمم بخلاف تلك المقدمة من خلال هذه اتفاقية المشاركة؛</li>
+        <li>الضرائب أو الرسوم المفروضة مباشرة على بيع المجوهرات المنتجة بموجب هذه الاتفاقية؛</li>
+        <li>رسوم سوق الذهب الخاصة بهذه الدفعة من المجوهرات؛</li>
+        <li>تكاليف التوصيل والشحن المتعلقة بالطلبات الصادرة من هذه المشاركة.</li>
+      </ul>
+      <p>ويجب على الصائغ/المصمم توثيق هذه التكاليف بشكل شفاف، وتُسترد من إجمالي الإيرادات قبل احتساب الأرباح.</p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">4.3</td>
+    <td><h4>Non-Recoverable Expenses</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>لمصاريف غير القابلة للاسترداد</h4></td>
+    <td class="point-no rtl">٤.٣</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>Any costs not directly tied to the jewelry produced under this Musharakah shall be borne solely by the Jeweler and shall <strong>not</strong> be deducted from the gross revenue. These <strong>Non-Recoverable Expenses</strong> include, but are not limited to:</p>
+      <ul>
+        <li>
+          Sooq Al Thahab platform subscription or general membership fees.
+        </li>
+        <li>
+          Marketing, branding, or advertising costs that are not exclusively related to this Musharakah.
+        </li>
+        <li>
+          Staff salaries, administrative overhead, or other operational costs of the Jeweler's business.
+        </li>
+      </ul>
+      <p>These costs are considered out-of-scope for this Agreement and shall not affect the profit calculation or distribution.</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>أي تكاليف لا ترتبط بشكل مباشر بإنتاج المجوهرات ضمن هذه المشاركة يتحملها الصائغ/المصمم وحده، ولا يجوز <strong>خصمها</strong> من إجمالي الإيرادات، وتُعد هذه المصاريف <strong>مصاريف غير قابلة للاسترداد</strong> وتشمل، على سبيل المثال لا الحصر، ما يلي:</p>
+      <ul>
+        <li>رسوم الاشتراك أو العضوية العامة في منصة سوق الذهب؛</li>
+        <li>اليف التسويق أو العلامة التجارية أو الإعلانات التي لا ترتبط حصريًا بهذه المشاركة؛</li>
+        <li>رواتب الموظفين أو المصاريف الإدارية أو أي تكاليف تشغيلية أخرى تتعلق بأعمال الصائغ/المصمم.</li>
+      </ul>
+      <p>.تُعتبر هذه التكاليف خارج نطاق هذه الاتفاقية، ولا تؤثر على احتساب الأرباح أو توزيعها</p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">4.4</td>
+    <td><h4><strong>Calculation of Net Profit</strong></h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4><strong>احتساب صافي الربح</strong></h4></td>
+    <td class="point-no rtl">٤.٤</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>Net profit = Gross Sales Revenue - Recoverable expenses paid by the Jeweler</p>
+      <p>Net Profit shall then be distributed as per the profit-sharing ratio in 4.1</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>افي الربح = إجمالي إيرادات البيع − المصاريف القابلة للاسترداد التي دفعها الصائغ/المصمم
+يتم بعد ذلك توزيع صافي الربح حسب نسبة تقاسم الأرباح الموضحة في المادة ٤.١</p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">4.5</td>
+    <td><h4><strong>Losses</strong></h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4><strong>الخسائر</strong></h4></td>
+    <td class="point-no rtl">٤.٥</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>Business losses, such as unsold inventory or precious metals/stones loss (e.g., precious metals/stones wastage), shall be borne by both Parties in proportion to their capital contributions. However, if the loss is due to negligence, fraud, or misconduct, the responsible Party shall bear that portion exclusively, as per Sharia principles.</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>الخسائر التشغيلية مثل البضاعة غير المباعة أو ضياع المعادن/الأحجار الكريمة (مثل الهدر في المواد) يتم تحملها من قبل الطرفين بنِسَب تتناسب مع مساهماتهما في رأس المال.
+        ومع ذلك، إذا نتجت الخسارة عن إهمال أو احتيال أو سوء تصرف، فإن الطرف المسؤول يتحمل تلك الخسارة وحده، وفقًا لمبادئ الشريعة الإسلامية</p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">4.6</td>
+    <td><h4>Audit and Access Rights</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>حقوق التدقيق والوصول</h4></td>
+    <td class="point-no rtl">٤.٦</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>The Provider shall have the right, upon reasonable prior notice, to request digital access to sales reports, inventory status, and recoverable expense documentation related to this Musharakah.</p>
+      <p>The Provider acknowledges that any request for access to digital reports or expense documentation may be subject to a reporting and facilitation fee to be charged by Sooq Al Thahab, subject to a transparent fee schedule agreed separately.</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>يحق للمزود، بعد إشعار مسبق ومعقول، طلب الوصول الرقمي إلى تقارير المبيعات، حالة المخزون، والمستندات المتعلقة بالمصاريف القابلة للاسترداد ضمن هذه المشاركة.
+        يقر المزود بأن أي طلب للحصول على تقارير رقمية أو مستندات مصاريف قد يخضع لرسوم إعداد وتيسير يتم تحصيلها من قبل سوق الذهب، وذلك وفق جدول رسوم شفاف يتم الاتفاق عليه بشكل منفصل.
+      </p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+
+  <tr>
+    <td class="point-no">5.</td>
+    <td><h3>RESPONSIBILITIES OF THE PARTIES</h3></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h3>مسؤوليات الأطراف</h3></td>
+    <td class="point-no rtl">٥</td>
+  </tr>
+
+  <tr>
+    <td class="point-no">5.1</td>
+    <td><h4>Jeweler's Responsibilities</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>مسؤوليات الصائغ</h4></td>
+    <td class="point-no rtl">٥.١</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <ul>
+        <li>Providing designs for the jewelry products.</li>
+        <li>Cover all cost related to jeweler manufacture, sales, marketing and advertising.</li>
+        <li>Ensuring the precious metals/stones is used in the production of the jewelry in accordance with the designs provided at a minimum.</li>
+        <li>Overseeing the sale and marketing of the finished jewelry products to achieve best possible outcomes, and inform the Provider about the progress and status of the manufacturing process and the sale of the jewelry.</li>
+        <li>Submit monthly reports to the Provider via Sooq Al Thahab digital app/platform, detailing the number of pieces produced, sold, remaining inventory, gross revenue, and a breakdown of any recoverable expenses incurred.</li>
+        <li>The Jeweler shall begin production within 30 days of receiving materials and shall list the resulting products for sale within 30 days, unless prevented by a force majeure event.</li>
+        <li>The Jeweler shall be fully responsible for the custody, condition, and handling of all materials or products in their possession or under their direction.</li>
+      </ul>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <ul>
+        <li>تقديم تصاميم منتجات المجوهرات.</li>
+        <li>تغطية جميع التكاليف المتعلقة بتصنيع وبيع وتسويق وإعلان المجوهرات.</li>
+        <li>التأكد من استخدام المعادن/الأحجار الكريمة في إنتاج المجوهرات وفقًا للتصاميم المقدمة على الأقل.</li>
+        <li>الإشراف على بيع وتسويق المنتجات النهائية من المجوهرات لتحقيق أفضل النتائج الممكنة، وإبلاغ المزودين بتقدم حالة عملية التصنيع وبيع المجوهرات.</li>
+        <li>تقديم تقارير شهرية إلى المزود من خلال تطبيق/منصة سوق الذهب، تتضمن عدد القطع المنتجة والمباعة، المخزون المتبقي، إجمالي الإيرادات، وتفصيلًا بالمصاريف القابلة للاسترداد التي تم تكبدها.</li>
+        <li>يجب على الصائغ/المصمم بدء الإنتاج خلال 30 يومًا من استلام المواد، وعرض المنتجات الناتجة للبيع خلال30  يومًا، ما لم يمنعه ظرف قاهر.</li>
+        <li>يكون الصائغ/المصمم مسؤولاً بالكامل عن حفظ وسلامة والتعامل مع جميع المواد أو المنتجات الموجودة في حوزته أو تحت إشرافه.</li>
+      </ul>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">5.2</td>
+    <td><h4>Provider's Responsibilities</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>سؤوليات المزود</h4></td>
+    <td class="point-no rtl">٥.٢</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <ul>
+        <li>Providing the precious metals/stones for the production of jewelry, based on the agreed terms.</li>
+        <li>Maintaining transparency regarding the quantity and value of the precious metals/stones provided and provide evidence for which.</li>
+      </ul>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <ul>
+        <li>تقديم المعادن/الأحجار الكريمة المطلوبة لإنتاج المجوهرات، وفقًا للشروط المتفق عليها.</li>
+        <li>الحفاظ على الشفافية فيما يخص كمية وقيمة المعادن/الأحجار الكريمة المقدمة، وتوفير الإثباتات اللازمة لذلك.</li>
+      </ul>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">6.</td>
+    <td><h3><strong>TERM AND TERMINATION</strong></h3></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h3><strong>لمدة والإنهاء</strong></h3></td>
+    <td class="point-no rtl">٦.٠</td>
+  </tr>
+
+  <tr>
+    <td class="point-no">6.1</td>
+    <td><h4><strong>Term</strong></h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4><strong>المدة</strong></h4></td>
+    <td class="point-no rtl">٦.١</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>This Agreement shall remain in force for a period of {% if musharakah_contract.expiry_date %}<strong>{{ musharakah_contract.expiry_date|date:"d/m/Y" }}</strong>{% elif musharakah_contract.expiry_days %}<strong>{{ musharakah_contract.expiry_days }} days</strong>{% endif %} from the date this Agreement is signed by both Parties, unless earlier terminated in accordance with this Section.</p>
+      <p>Either Party may request termination by providing at least sixty (60) days written notice; however, such termination shall be subject to the applicable settlement obligations and conditions set forth in Clauses 6.2 and 6.3.</p>
+      <p>Any termination by either Party under this Clause shall be deemed an early termination and shall be subject to the settlement procedures and financial obligations set forth in Clauses 6.2 or 6.3, as applicable.</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>تظل هذه الاتفاقية سارية المفعول لمدة {% if musharakah_contract.expiry_date %}<strong>{{ musharakah_contract.expiry_date|date:"j F Y" }}</strong>{% elif musharakah_contract.expiry_days %}<strong>{{ musharakah_contract.expiry_days }} يوم</strong>{% endif %} من تاريخ توقيعها من قبل الطرفين، ما لم يتم إنهاؤها في وقت سابق وفقًا لأحكام هذا القسم.</p>
+
+      <p>
+        يجوز لأي من الطرفين طلب الإنهاء بموجب إشعار خطي مدته ستين (٦٠) يومًا؛ ومع ذلك، يخضع هذا الإنهاء لالتزامات التسوية والشروط المنصوص عليها في المادتين ٦.٢ و ٦.٣.
+      </p>
+      <p>
+        عتبر أي إنهاء من قبل أي من الطرفين بموجب هذه المادة إنهاءً مبكرًا، ويخضع لإجراءات التسوية والالتزامات المالية المنصوص عليها في المادتين ٦.٢ أو ٦.٣، بحسب الأحوال.
+      </p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">6.2</td>
+    <td><h4>Early Termination by the Provider</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>إنهاء مبكر من قبل المزود</h4></td>
+    <td class="point-no rtl">٦.٢</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>During the notice period, Sooq Al Thahab will in kind assist in finding a <strong>replacement Provider</strong> to assume the Provider's existing precious metals/stones position under the same terms.</p>
+      <p>If a replacement is found and accepted by all Parties, no penalty shall apply.</p>
+      <p>If no replacement is found:</p>
+      <ul>
+        <li>The Provider shall pay an early termination settlement, being one of the following at the discretion of the Jeweler, either:</li>
+        <ol>
+          <li>All <strong>documented manufacturing, tax, and associated operational costs</strong> related to unsold jewelry produced using the Provider's precious metals/stones.</li>
+          <li>Or the <strong>retail price of the unsold jewelry,</strong> upon which the Provider will take full possession of the items.</li>
+        </ol>
+      </ul>
+      <p>This ensures the Jeweler is reimbursed for their out-of-pocket costs and profit, and the Provider retains ownership of the final products.</p>
+      <p>Retail price shall be based on the last listed price of the product on Sooq Al Thahab's platform, or the most recent sale price, whichever is lower.</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p class="rtl">
+        خلال فترة الإشعار، ستقوم <strong>سوق الذهب</strong> بتقديم المساعدة العينية في البحث عن <strong>مزود بديل</strong> ليتولى مركز المعادن الثمينة و/أو الأحجار الكريمة القائم الخاص بالمزود، وذلك وفقًا لنفس الشروط والأحكام.
+      </p>
+
+      <p>إذا تم العثور على مزود بديل وتمت الموافقة عليه من قبل جميع الأطراف، فلن تُطبق أي غرامة.</p>
+
+      <p>إذا لم يتم العثور على مزود بديل:</p>
+
+      <ul>
+        <li>يلتزم المزود بدفع تسوية إنهاء مبكر، وذلك وفقًا لاختيار الصائغ/المصمم، وتكون إحدى الخيارين التاليين:</li>
+        <ol>
+          <li>جميع <strong>تكاليف التصنيع الموثقة والضرائب والتكاليف التشغيلية المرتبطة</strong> بالمجوهرات غير المباعة التي تم إنتاجها باستخدام المعادن و/أو الأحجار الكريمة الخاصة بالمزود.</li>
+          <li>أو <strong>سعر البيع بالتجزئة للمجوهرات غير المباعة</strong>، على أن يتسلم المزود الملكية الكاملة لتلك القطع.</li>
+        </ol>
+      </ul>
+
+      <p>ويهدف ذلك إلى ضمان تعويض الصائغ/المصمم عن التكاليف التي تحملها من ماله الخاص وعن أرباحه، مع احتفاظ المزود بملكية المنتجات النهائية.</p>
+
+      <p>يُحتسب سعر البيع بالتجزئة بناءً على آخر سعر مُدرج للمنتج على منصة <strong>سوق الذهب</strong>، أو على أحدث سعر بيع فعلي، أيهما أقل.</p>
+    </td>
+
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">6.3</td>
+    <td><h4>Early Termination by the Jeweler</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>لإنهاء المبكر من قبل الصائغ/المصمم</h4></td>
+    <td class="point-no rtl">٦.٣</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>If the Jeweler chooses to terminate this Agreement early, they must:</p>
+      <ul>
+        <li>
+          Return the equivalent weight and purity of the Provider's precious metals, either in bullion or finished product form.
+        </li>
+        <li>
+          Return the equivalent type, weight, and quality of the Provider's precious stones, either in their original form or as part of unsold finished jewelry.
+        </li>
+        <li>
+          Bear delivery and insurance costs only if the Jeweler had previously been granted approved custody of the precious metals/stones or jewelry.
+        </li>
+      </ul>
+
+      <p>If the precious metals/stones or jewelry remained within Sooq Al Thahab custody, return logistics shall be arranged by Sooq Al Thahab at the Provider's expense.</p>
+      <p>Retail price shall be based on the last listed price of the product on Sooq Al Thahab's platform, or the most recent sale price, whichever is lower.</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>إذا اختار الصائغ/المصمم إنهاء هذه الاتفاقية مبكرًا، يجب عليه:</p>
+      <ul>
+        <li>
+          إعادة ما يعادل وزن ونقاء معادن المزود، إما على شكل سبائك أو في صورة منتجات منتهية غير مباعة؛        </li>
+        <li>
+          إعادة الأحجار الكريمة من نفس النوع والوزن والجودة، سواء في شكلها الأصلي أو كجزء من مجوهرات غير مباعة؛
+        </li>
+        <li>
+          يتحمل تكاليف الشحن والتأمين فقط إذا كان قد حصل على موافقة مسبقة لحيازة المعادن/الأحجار الكريمة أو المجوهرات.
+        </li>
+      </ul>
+
+      <p>أما إذا بقيت المعادن/الأحجار الكريمة أو المجوهرات ضمن حيازة سوق الذهب، فسيتم تنسيق عملية الإرجاع من قبل سوق الذهب على نفقة المزود.
+      </p>
+      <p>ُحتسب سعر البيع بالتجزئة بناءً على آخر سعر إدراج للمنتج على منصة سوق الذهب، أو آخر سعر بيع فعلي، أيهما أقل.</p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">6.4</td>
+    <td><h4>Custody and Ecosystem Compliance</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>الحيازة والامتثال للبيئة التشغيلية</h4></td>
+    <td class="point-no rtl">٦.٤</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>
+        The Jeweler agrees that all jewelry produced under this Musharakah, and any precious metals/stones held for the Provider, must remain
+        <strong>within the custody of Sooq Al Thahab</strong> or a <strong>location pre-approved in writing by both the Provider and Sooq Al Thahab</strong>.
+      </p>
+
+      <p>
+        The Jeweler shall not host or relocate the Provider's precious metals/stones or jewelry to any private location, shop, or facility without <strong>explicit written approval</strong> from:
+      </p>
+
+      <ul>
+        <li>The Provider</li>
+        <li>Sooq Al Thahab</li>
+      </ul>
+
+      <p>Unauthorized custody shall be considered a material breach of this Agreement and trigger Clause 6.5.</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>يوافق الصائغ/المصمم على أن تبقى جميع المجوهرات المنتجة ضمن هذه المشاركة، وأي معادن و/أو أحجار كريمة محفوظة نيابةً عن المزود، <strong>ضمن حيازة</strong> أو في <strong>موقع معتمد خطيًا من قبل كلٍ من المزود و</strong>.</p>
+
+      <p>لا يجوز للصائغ/المصمم استضافة أو نقل معادن و/أو أحجار كريمة أو مجوهرات المزود إلى أي موقع خاص أو متجر أو منشأة دون <strong>موافقة كتابية صريحة</strong> من:</p>
+
+      <ul>
+        <li>المزود</li>
+        <li>سوق آل الذهب</li>
+      </ul>
+
+      <p>ويُعد أي تصرف غير مصرح به في الحيازة خرقًا جوهريًا لهذه الاتفاقية ويؤدي إلى تفعيل أحكام البند ٦.٥.</p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">6.5</td>
+    <td><h4>Termination for Breach</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>الإنهاء بسبب الإخلا</h4></td>
+    <td class="point-no rtl">٦.٥</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>
+        If either Party commits a material breach of this Agreement — including, but not limited to:
+      </p>
+
+      <ul>
+        <li>Unauthorized use, relocation, or withholding of precious metals/stones or jewelry.</li>
+        <li>Misrepresentation of costs, design ownership, or product delivery</li>
+        <li>Failure/Refusal to fulfill and perform agreed financial or any contractual obligations</li>
+        <li>Violation of confidentiality or custody terms</li>
+      </ul>
+
+      <p>Then the non-breaching Party ("Impacted Party") shall have the right to:</p>
+      <ol class=>
+        <li><strong>Immediately terminate the Agreement</strong></li>
+        <li><strong>Claim compensation for all direct damages</strong>, including:</li>
+          <ul>
+            <li>The <strong>full value of any precious metals/stones misused or not returned if the Provider is the Impacted Party,</strong></li>
+            <li>Any <strong>manufacturing or operational costs,</strong> incurred that remain unrecovered, if the Jeweler is the Impacted Party.</li>
+            <li><strong>Lost profit </strong> resulting from breached commitments (if quantifiable and mutually agreed).</li>
+          </ul>
+      </ol>
+
+      <p>
+        The breaching Party also agrees to pay an <strong>additional contractual penalty</strong> of
+        <strong>BHD {{ musharakah_contract.penalty_amount }}</strong>, or the actual financial loss or damage incurred by the non-breaching Party ("Impacted Party") — whichever is higher — to compensate for reputational harm, disruption, and time loss, subject to Sharia principles of fairness and actual harm.
+      </p>
+
+      <p>
+        If the claimed financial loss exceeds <strong>BHD {{ musharakah_contract.penalty_amount }}</strong>, the Impacted Party shall prepare a calculation of actual financial loss or damage, supported by evidence. If the breaching Party disputes the amount, the Parties shall jointly appoint an independent, qualified expert (or an arbitrator) to determine the sum, in accordance with the Civil Code of Bahrain. Failing agreement on the expert within 14 days, either Party may request the Bahrain courts to determine the appropriate amount pursuant to Articles 223-227 of Decree-Law 19/2001.
+      </p>
+
+      <p>
+        In case of urgency and to avoid aggravated damages, the Impacted Party may refer the matter to the Urgent Matters Court to cease the violation and to appoint an expert to determine the damages and assess the compensation/losses incurred.
+      </p>
+
+      <p>
+        Sooq Al Thahab reserves the right to suspend or ban the breaching Party from future participation, and to notify other Impacted stakeholders.
+      </p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>
+        إذا قام أحد الطرفين بارتكاب خرق جوهري لهذه الاتفاقية، بما في ذلك – على سبيل المثال لا الحصر:
+      </p>
+
+      <ul>
+        <li>الاستخدام غير المصرح به أو نقل أو حجب المعادن/الأحجار الكريمة أو المجوهرات؛</li>
+        <li>تقديم معلومات مضللة بخصوص التكاليف أو ملكية التصاميم أو تسليم المنتجات؛</li>
+        <li>لإخفاق أو الرفض في الوفاء بالالتزامات المالية أو التعاقدية المتفق عليها؛</li>
+        <li>انتهاك شروط السرية أو الحيازة؛</li>
+      </ul>
+
+      <p>إن للطرف المتضرر ("الطرف المتأثر") الحق في:</p>
+      <ol>
+        <li><strong>إنهاء الاتفاقية فورًا</strong></li>
+        <li><strong>المطالبة بتعويض عن جميع الأضرار المباشرة</strong>، بما في ذلك:</li>
+        <ul>
+          <li><strong>القيمة الكاملة لأي معادن و/أو أحجار كريمة</strong> تم إساءة استخدامها أو لم يتم إرجاعها، إذا كان المزود هو الطرف المتأثر؛</li>
+          <li>أي <strong>تكاليف تصنيع أو تشغيلية</strong> تم تكبدها ولم يتم استردادها، إذا كان الصائغ/المصمم هو الطرف المتأثر؛</li>
+          <li><strong>الأرباح المفقودة</strong> الناتجة عن الإخلال بالالتزامات (إذا كانت قابلة للتحديد وتم الاتفاق عليها بشكل متبادل).</li>
+        </ul>
+      </ol>
+
+      <p>كما يلتزم الطرف المخلّ بدفع <strong>غرامة تعاقدية إضافية</strong> قدرها <strong>BHD {{ musharakah_contract.penalty_amount }}</strong> أو قيمة الخسائر أو الأضرار المالية الفعلية التي تكبدها الطرف غير المخلّ ("الطرف المتأثر") — أيهما أعلى — وذلك لتعويض الأضرار المعنوية، وتعطّل الأعمال، وضياع الوقت، وفقًا لمبادئ الشريعة الإسلامية القائمة على العدالة والضرر الفعلي.</p>
+
+      <p>إذا تجاوزت الخسائر أو الأضرار المالية المطالب بها مبلغ <strong>BHD {{ musharakah_contract.penalty_amount }}</strong>، يلتزم الطرف المتأثر بإعداد بيان تفصيلي بقيمة الخسائر أو الأضرار الفعلية مدعومًا بالأدلة، وفي حال اعتراض الطرف المخلّ على المبلغ، يتفق الطرفان على تعيين خبير مستقل ومؤهل (أو مُحكّم) لتحديد القيمة المستحقة، وذلك وفقًا لأحكام القانون المدني في مملكة البحرين، وفي حال عدم اتفاق الطرفين خلال مدة <strong>14 يومًا</strong> على تعيين الخبير، يحق لأي منهما اللجوء إلى المحاكم البحرينية لتحديد المبلغ المناسب وفقًا للمواد <strong>223–227</strong> من المرسوم بقانون رقم <strong>19 لسنة 2001</strong>.</p>
+
+      <p>
+        وفي حال وجود حالة طارئة ولتجنب تفاقم الضرر، يجوز للطرف المتأثر التوجه إلى محكمة الأمور المستعجلة لوقف الانتهاك وتعيين خبير لتحديد الأضرار والتعويضات المناسبة.
+      </p>
+
+      <p>
+        يحتفظ سوق الذهب بالحق في تعليق أو حظر مشاركة الطرف المخلّ في المستقبل، وإبلاغ الأطراف الأخرى المتأثرة بذلك.
+      </p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">6.6</td>
+    <td><h4>Force Majeure</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>القوة القاهرة</h4></td>
+    <td class="point-no rtl">٦.٦</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>
+        No party shall be liable or responsible to the other party, nor be deemed to have defaulted under or breached this Agreement, for any failure or delay in fulfilling or performing any term of this Agreement (except for any obligations to make payments to the other party hereunder), when and to the extent such failure or delay is caused by or results from acts beyond the impacted party's ("Impacted Party") control, including, but not limited to, the following force majeure events ("Force Majeure Events"):
+        (a) acts of God;
+        (b) a natural disaster (fires, explosions, earthquakes, hurricane, flooding, storms, infestations, fog, extreme weather), epidemic, or pandemic;
+        (c) war, invasion, hostilities (whether war is declared or not), terrorist threats or acts, riot or other civil unrest;
+        (d) government order or law;
+        (e) actions, embargoes or blockades in effect on or after the date of this Agreement;
+        (f) action by any governmental authority;
+        (g) national or regional emergency;
+        (h) strikes, labor stoppages or slowdowns or other industrial disturbances;
+        (i) loss or malfunction of utility, transportation, computer (hardware or software or data) or telephone communication service;
+        (j) illegal act of audience or attendant as an individual or crowd.
+        The Impacted Party shall give Notice within 2 days of the Force Majeure Event to the other party, stating the period of time the occurrence, impact, resolution and expected to continue. The Impacted Party shall use diligent efforts to end the failure or delay and ensure the effects of such Force Majeure Event are minimized. The Impacted Party shall resume the performance of its obligations as soon as reasonably practicable after the removal of the cause.
+      </p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>
+        لا يتحمل أي طرف مسؤولية تجاه الطرف الآخر، ولا يُعتبر مُخلًا أو متقاعسًا بموجب هذه الاتفاقية، بسبب أي فشل أو تأخير في تنفيذ أي بند من بنود هذه الاتفاقية (باستثناء الالتزامات المالية)، متى ما كان هذا الفشل أو التأخير ناتجًا عن ظروف خارجة عن إرادة الطرف المتأثر ("الطرف المتأثر")، بما في ذلك على سبيل المثال لا الحصر:
+        (أ) الكوارث الطبيعية؛
+        (ب) الجوائح أو الأوبئة؛
+        (ج) الحروب أو التهديدات الإرهابية أو الاضطرابات المدنية؛
+        (د) الأوامر أو القوانين الحكومية؛
+        (هـ) الحصار أو القيود التجارية؛
+        (و) قرارات الجهات التنظيمية؛
+        (ز) الطوارئ الوطنية أو الإقليمية؛
+        (ح) الإضرابات أو توقف العمال أو البطء في الإنتاج؛
+        (ط) انقطاع الخدمات أو تعطل أنظمة الاتصالات أو الكهرباء أو البيانات؛
+        (ي) أعمال غير قانونية من الجمهور أو الأفراد.
+        يجب على الطرف المتأثر تقديم إشعار خلال يومين من حدوث القوة القاهرة، موضحًا مدة الحدث وتأثيره المتوقع، ويجب عليه بذل الجهود اللازمة لإنهاء التأثير واستئناف تنفيذ التزاماته بأسرع وقت ممكن.
+      </p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">6.7</td>
+    <td><h4>Change in Control</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>التغيير في السيطرة</h4></td>
+    <td class="point-no rtl">٦.٧</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>In the event that either Party undergoes a change in ownership or control, they shall notify the other Party in writing within ten (10) business days of the change.</p>
+      <p>The Parties shall engage in good faith discussions to assess whether the new ownership poses a material conflict of interest or commercial risk to the Musharakah.</p>
+      <p>If no such conflict or risk is identified, the Agreement shall remain valid and binding under the new ownership.</p>
+      <p>However, if no mutually acceptable solution is reached within thirty (30) days due to a material concern, the non-changing Party shall have the right to initiate a structured withdrawal or early termination process. In such case, the termination shall follow the same settlement procedures and financial obligations as set forth in Clause 6.2 or 6.3, as applicable.</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>في حال خضوع أي من الطرفين لتغيير في الملكية أو السيطرة، يجب عليه إخطار الطرف الآخر كتابيًا خلال عشرة (١٠) أيام عمل من تاريخ التغيير. يتعين على الطرفين الدخول في مناقشات بنّاءة وبحسن نية لتقييم ما إذا كانت السيطرة الجديدة تشكل تعارضًا جوهريًا في المصالح أو مخاطرة تجارية تؤثر على المشاركة.
+        إذا لم يتم تحديد أي تعارض أو مخاطرة، تظل الاتفاقية سارية وملزمة تحت الملكية الجديدة.
+        أما إذا لم يتم التوصل إلى حل مرضٍ للطرفين خلال ثلاثين (٣٠) يومًا بسبب وجود مخاوف جوهرية، يحق للطرف غير المتغير بدء عملية انسحاب منظم أو إنهاء مبكر. وفي هذه الحالة، يتم تنفيذ الإنهاء وفق نفس إجراءات التسوية والالتزامات المالية المنصوص عليها في المادة ٦.٢ أو ٦.٣، بحسب الأحوال
+        </p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">7.</td>
+    <td><h3><strong>DISPUTE RESOLUTION</strong></h3></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h3><strong>تسوية النزاعات</strong></h3></td>
+    <td class="point-no rtl">٧.٠</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>
+        Subject to clause 6.5 above, in the event of any dispute, disagreement, or claim arising out of or relating to this Agreement, the Parties agree to attempt to resolve the matter amicably within a period of one month.
+      </p>
+      <p>
+        If the dispute cannot be resolved through negotiations, the Parties agree to refer the matter to the <strong>Bahrain Chamber for Dispute Resolution (BCDR),</strong> for arbitration, in accordance with Sharia principles and the rules of the <strong>Kingdom of Bahrain.</strong>
+      </p>
+      <p>
+        Any arbitration award shall be final, binding, and enforceable in the courts of the Kingdom of Bahrain.
+      </p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>
+        مع مراعاة أحكام المادة ٦.٥ أعلاه، وفي حال نشوء أي نزاع أو خلاف أو مطالبة ناتجة عن هذه الاتفاقية أو تتعلق بها، يتفق الطرفان على محاولة حل الأمر وديًا خلال مدة شهر واحد.
+        وفي حال تعذّر حل النزاع من خلال المفاوضات، يتفق الطرفان على إحالة النزاع إلى <strong>مركز تسوية المنازعات في البحرين (BCDR)</strong> للتحكيم، وذلك وفقًا لمبادئ الشريعة الإسلامية ووفقًا لقوانين <strong>مملكة البحرين</strong>.
+
+        يُعد أي حكم يصدر عن التحكيم نهائيًا وملزمًا وقابلًا للتنفيذ أمام محاكم مملكة البحرين.
+      </p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">8.</td>
+    <td><h3>GENERAL TERMS</h3></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h3>الشروط العامة</h3></td>
+    <td class="point-no rtl">٨.٠</td>
+  </tr>
+
+  <tr>
+    <td class="point-no">8.1</td>
+    <td><h4>Confidentiality</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>السرية</h4></td>
+    <td class="point-no rtl">٨.١</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>
+        Both Parties agree to maintain the confidentiality of any financial, proprietary, technical, or sensitive information exchanged during the course of this Agreement and not to disclose such information to any third party without prior written consent. This includes but is not limited to: business plans, pricing structures, precious metals/stones weight and value, precious stones type, weight, value, and quality, design details, supplier relationships, production costs, and customer data.
+      </p>
+      <p>
+        Confidentiality shall not apply to financial or operational disclosures required to ensure transparency and fairness in the execution of this Agreement between the Provider, the Jeweler, and Sooq Al Thahab.
+      </p>
+      <p>
+        Each Party is individually bound by this confidentiality obligation, and this clause shall act as a full and enforceable non-disclosure commitment between the Provider and the Jeweler without the need for a separate NDA.
+      </p>
+      <p>
+        These confidentiality obligations shall remain in effect throughout the term of this Agreement and for two (2) years after its termination, unless otherwise required by law.
+      </p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>
+        يتعهد كلا الطرفين بالحفاظ على سرية أي معلومات مالية أو فنية أو حساسة أو خاصة يتم تبادلها خلال تنفيذ هذه الاتفاقية، وعدم إفشائها لأي طرف ثالث دون موافقة كتابية مسبقة. ويشمل ذلك — على سبيل المثال لا الحصر — خطط العمل، هيكل التسعير، وزن وقيمة المعادن/الأحجار الكريمة، نوع الأحجار، تفاصيل التصاميم، علاقات الموردين، تكاليف الإنتاج، وبيانات العملاء.
+        لا تنطبق السرية على الإفصاحات المالية أو التشغيلية المطلوبة لضمان الشفافية والعدالة في تنفيذ هذه الاتفاقية بين المزود والصائغ/المصمم وسوق الذهب.
+        ويُعتبر كل طرف ملتزمًا بهذه السرية بشكل مستقل، وتُعد هذه المادة التزامًا كاملاً ونافذًا من حيث عدم الإفشاء بين الطرفين دون الحاجة إلى توقيع اتفاقية سرية منفصلة.
+        تبقى التزامات السرية سارية طوال مدة هذه الاتفاقية ولمدة سنتين (٢) بعد إنهائها، ما لم يُطلب خلاف ذلك بموجب القانون.
+      </p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">8.2</td>
+    <td><h4>Amendments</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>التعديلات</h4></td>
+    <td class="point-no rtl">٨.٢</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>
+        Any amendment to this Agreement must comply with the principles of Sharia and be made in writing and signed by both Parties.
+      </p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>
+        يجب أن تكون أي تعديلات على هذه الاتفاقية متوافقة مع مبادئ الشريعة الإسلامية، وأن تكون مكتوبة وموقعة من قبل كلا الطرفين.
+      </p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">8.3</td>
+    <td><h4>Governing Law</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>القانون الحاكم</h4></td>
+    <td class="point-no rtl">٨.٣</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>
+        This Agreement shall be governed by the laws of the Kingdom of Bahrain. In the event of any conflict between the laws of the Kingdom of Bahrain and the principles of Sharia, the principles of Sharia shall prevail. The parties agree that, subject to Clause 7, the courts of the Kingdom of Bahrain shall have jurisdiction to enforce this Agreement and any arbitration award rendered hereunder.
+      </p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>
+        تخضع هذه الاتفاقية لقوانين مملكة البحرين. وفي حال وجود تعارض بين قوانين مملكة البحرين ومبادئ الشريعة الإسلامية، فإن الأولوية تكون لمبادئ الشريعة.
+ويتفق الطرفان على أنه، مع مراعاة المادة ٧، تكون لمحاكم مملكة البحرين الولاية القضائية لتنفيذ هذه الاتفاقية وأي حكم تحكيمي يصدر بموجبها
+      </p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">8.4</td>
+    <td><h4>Severability</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>قابلية الفصل</h4></td>
+    <td class="point-no rtl">٨.٤</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>
+        If any provision or clause of this Agreement becomes invalid, illegal, or unenforceable due to a court ruling, change in applicable law, regulation, or government directive, such invalidity shall not affect the validity or enforceability of the remaining provisions.
+      </p>
+      <p>
+        The remaining provisions shall remain in full force and effect, unless the invalidated clause is essential to the overall purpose of the Agreement.
+      </p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>
+        إذا أصبحت أي مادة أو بند في هذه الاتفاقية باطلاً أو غير قانوني أو غير قابل للتنفيذ نتيجة لحكم قضائي، أو تغيير في القوانين أو اللوائح أو التعليمات الحكومية المعمول بها، فإن ذلك لا يؤثر على صحة أو قابلية تنفيذ بقية المواد أو البنود، والتي تظل سارية وملزمة لكلا الطرفين، ما لم يكن البند المتأثر جوهريًا لهدف الاتفاقية ككل.
+      </p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">8.5</td>
+    <td><h4>Legal Costs and Enforcement</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>التكاليف القانونية والتنفيذية</h4></td>
+    <td class="point-no rtl">٨.٥</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>
+        In the event of any legal or arbitration proceedings arising from this Agreement, the losing party shall bear all reasonable legal fees, court or arbitration costs, expert fees, and related expenses incurred by the prevailing party, unless otherwise decided by the court or tribunal.
+      </p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>
+        في حال نشوء أي دعوى قانونية أو تحكيمية ناتجة عن هذه الاتفاقية، يتحمل الطرف الخاسر جميع أتعاب المحاماة المعقولة، وتكاليف المحكمة أو التحكيم، وأجور الخبراء، والمصاريف المرتبطة بها التي تكبدها الطرف الفائز، ما لم تقرر المحكمة أو هيئة التحكيم خلاف ذلك.
+      </p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+
+  <tr>
+    <td class="point-no">9.</td>
+    <td><h4>ROLE OF {{ organization_details.name|upper  }} AS AN AGENT</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>دور سوق الذهب كوكيل</h4></td>
+    <td class="point-no rtl">٩</td>
+  </tr>
+
+  <tr>
+    <td class="point-no">9.1</td>
+    <td><h4>Wakalah</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>الوكالة</h4></td>
+    <td class="point-no rtl">٩.١</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>The Parties hereby agree that they have previously granted Sooq Al Thahab the Wakalah to act as their agent for the purposes of:</p>
+      <ul>
+          <li>Receiving precious metals/stones from the Provider and delivering them to the Jeweler. </li>
+          <li>Receiving finished products from the manufacturer and delivering them to the Jeweler or end customers.</li>
+      </ul>
+
+      <p>This Wakalah will be used to support each party's needs to the extent of the Wakalah.</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>يقر الطرفان بموجب هذه الاتفاقية أنهما قاما سابقًا بمنح سوق الذهب وكالة للتصرف نيابةً عنهما في الأمور التالية:</p>
+      <ul>
+          <li>استلام المعادن/الأحجار الكريمة من المزود وتسليمها إلى الصائغ/المصمم.</li>
+          <li>استلام المنتجات النهائية من المصنع وتسليمها إلى الصائغ/المصمم أو العملاء النهائيين.</li>
+      </ul>
+
+      <p>تُستخدم هذه الوكالة لتسهيل احتياجات كل طرف في حدود صلاحيات الوكالة الممنوحة له.</p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">9.2</td>
+    <td><h4><strong>Liability of Sooq Al Thahab</strong></h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4><strong>مسؤولية سوق الذهب</strong></h4></td>
+    <td class="point-no rtl">٩.٢</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>
+        <strong>Sooq Al Thahab</strong> shall not be held liable for any loss, theft, or damage to the precious metals/stones or finished products while in transit or storage, except in cases of gross negligence or willful misconduct.
+        The Parties agree to indemnify <strong>Sooq Al Thahab</strong> against any claims arising from the execution of Wakalah.
+      </p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>
+        لا تتحمل <strong>سوق الذهب</strong> أي مسؤولية عن أي فقدان أو سرقة أو تلف يصيب المعادن الثمينة و/أو الأحجار الكريمة أو المنتجات النهائية أثناء النقل أو التخزين، إلا في حالات الإهمال الجسيم أو سوء السلوك المتعمد.
+        ويتفق الطرفان على تعويض <strong>سوق الذهب</strong> وإبرائها من أي مطالبات قد تنشأ نتيجة تنفيذ الوكالة.
+      </p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">9.3</td>
+    <td><h4>Rights and Duties of Sooq Al Thahab</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>حقوق والتزامات سوق الذهب</h4></td>
+    <td class="point-no rtl">٩.٣</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>Sooq Al Thahab role is strictly limited to acting as a neutral facilitator and custodian in accordance with this Agreement and the granted Wakalah. Sooq Al Thahab shall not be considered a party in this Musharakah Agreement and shall not share in the profits or losses of the Musharakah.</p>
+      <p>The Parties acknowledge that any breach, misconduct, or negligence by either Party shall not be attributable to Sooq Al Thahab. The Parties agree to indemnify and hold Sooq Al Thahab harmless against any reputational, financial, or regulatory consequences arising from such actions.</p>
+      <p>Sooq Al Thahab reserves the right to enforce custody policies, suspend access, or initiate investigation or resolution measures if it believes the Agreement's terms or Sharia principles are being violated.</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>يقتصر دور سوق الذهب على العمل كطرف محايد وميسر وكيل للحفظ، وذلك وفقًا لهذه الاتفاقية وصلاحيات الوكالة الممنوحة له. ولا يُعتبر سوق الذهب طرفًا في اتفاقية المشاركة، ولا يشارك في الأرباح أو الخسائر.
+        ويقر الطرفان بأن أي إخلال أو سوء تصرف أو إهمال من أي منهما لا يُنسب إلى سوق الذهب. ويتعهد الطرفان بتعويض سوق الذهب عن أي أضرار معنوية أو مالية أو تنظيمية ناتجة عن مثل هذه الأفعال.
+        ويحتفظ سوق الذهب بالحق في تطبيق سياسات الحفظ، أو تعليق الوصول، أو بدء التحقيقات أو إجراءات التصعيد إذا رأى أن شروط الاتفاقية أو مبادئ الشريعة قد تم انتهاكها.</p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">9.4</td>
+    <td><h4>Indemnity and Limitation of Liability</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>التعويض وحدود المسؤولية</h4></td>
+    <td class="point-no rtl">٩.٤</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>The Provider and the Jeweler each agree to indemnify, defend, and hold harmless Sooq Al Thahab, its officers, directors, employees, and affiliates from and against any direct or indirect loss, liability, claim, damage, cost, or expense (including legal fees) arising out of or in connection with:</p>
+      <ol>
+          <li>Any breach of this Agreement by the Provider or Jeweler.</li>
+          <li>Any misrepresentation, fraud, or negligence by the Provider or Jeweler.</li>
+          <li>Any reputational harm, regulatory inquiry, or third-party claim resulting from the conduct of either Party.</li>
+          <li>Any operational failure, shipment issue, or compliance violation arising from actions or omissions by the Provider or Jeweler.</li>
+      </ol>
+
+      <p>This indemnity shall survive the termination or expiration of this Agreement.</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>يوافق كل من المزود والصائغ/المصمم على تعويض والدفاع عن سوق الذهب، بالإضافة إلى مسؤولي الشركة ومديريها وموظفيها وشركاتها التابعة، من أي خسائر أو مسؤوليات أو مطالبات أو أضرار مباشرة أو غير مباشرة أو تكاليف (بما في ذلك أتعاب المحاماة) ناجمة عن أو مرتبطة بما يلي:</p>
+      <ol>
+        <li>أي خرق لهذه الاتفاقية من قبل المزود أو الصائغ/المصمم؛</li>
+        <li>ي تمثيل خاطئ أو احتيال أو إهمال من أحد الطرفين؛</li>
+          <li>ي ضرر معنوي أو استعلام تنظيمي أو مطالبة من طرف ثالث نتيجة تصرف أحد الطرفين؛</li>
+          <li>ي خلل تشغيلي أو مشكلة شحن أو مخالفة تنظيمية ناتجة عن أفعال أو تقصير من أحد الطرفين.</li>
+      </ol>
+
+      <p>يظل هذا التعويض ساريًا بعد انتهاء أو إلغاء هذه الاتفاقية.</p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">9.5</td>
+    <td><h4>Sooq Al Thahab Neutrality and Non-Party</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>حياد سوق الذهب وعدم اعتباره طرفًا</h4></td>
+    <td class="point-no rtl">٩.٥</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>Sooq Al Thahab acts solely as a neutral facilitator and agent (Wakil) under this Agreement, providing custodial, logistical, and digital services for the benefit of the Parties under their Sooq Al Thahab digital app/platform.</p>
+      <p>The Parties acknowledge and agree that Sooq Al Thahab is not a party to the Musharakah Agreement and shall bear no responsibility for the commercial outcomes, profits, losses, or performance of either Party.</p>
+      <p>Sooq Al Thahab shall not be deemed a fiduciary, guarantor, investor, or joint venture partner under any circumstances.</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>يعمل سوق الذهب حصريًا كطرف محايد ووكيل بموجب هذه الاتفاقية، ويقدم خدمات الحفظ والخدمات اللوجستية والرقمية لصالح الطرفين من خلال تطبيقه ومنصته الرقمية.
+        ويقر الطرفان ويوافقان على أن سوق الذهب ليس طرفًا في اتفاقية المشاركة، ولا يتحمل أي مسؤولية عن النتائج التجارية أو الأرباح أو الخسائر أو أداء أي طرف من الطرفين.
+        ولا يُعتبر سوق الذهب تحت أي ظرف من الظروف كيانًا ائتمانيًا أو ضامنًا أو مستثمرًا أو شريكًا تجاريًا في المشروع.</p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">9.6</td>
+    <td><h4>Reference to Sooq Al Thahab</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>الإشارة إلى شروط سوق الذهب</h4></td>
+    <td class="point-no rtl">٩.٦</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>The Parties acknowledge that their use of Sooq Al Thahab digital app/platform is governed by Sooq Al Thahab's Subscription Terms and Conditions, Cancellation Policy, which they have agreed to independently. In case of conflict between this Agreement and Sooq Al Thahab terms, this Agreement shall govern the Musharakah relationship.</p>
+      <p>The applicable version of the Sooq Al Thahab Terms and Conditions shall be the version in effect at the time of signing this Agreement. Material amendments to such Terms and Conditions shall require at least thirty (30) days' prior written notice to the Parties. Continued use of the Platform following such notice shall constitute acceptance of the revised Terms. Non-material updates may be enforced immediately upon publication on the Platform, and it is the user's responsibility to review such changes periodically.</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>يقر الطرفان بأن استخدامهما لتطبيق/منصة سوق الذهب يخضع إلى شروط الاشتراك وسياسة الإلغاء المعتمدة لدى سوق الذهب، والتي وافق كل طرف عليها بشكل مستقل. وفي حال وجود تعارض بين هذه الاتفاقية وشروط سوق الذهب، تسود أحكام هذه الاتفاقية فيما يخص علاقة المشاركة.
+        تُطبق النسخة المعتمدة من شروط وأحكام سوق الذهب السارية وقت توقيع هذه الاتفاقية.
+        يجب تقديم إشعار خطي قبل ثلاثين (٣٠) يومًا على الأقل بشأن أي تعديل مادي في هذه الشروط.
+        يُعد استمرار استخدام المنصة بعد تقديم الإشعار قبولًا للتعديلات.
+        ويمكن تطبيق التحديثات غير المادية فور نشرها على المنصة، ويقع على عاتق المستخدم مسؤولية مراجعة هذه التغييرات بشكل دوري.</p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">10.</td>
+    <td><h4>Final Provisions</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>الأحكام الختامية</h4></td>
+    <td class="point-no rtl">١٠</td>
+  </tr>
+
+  <tr>
+    <td class="point-no">10.1</td>
+    <td><h4>Entire Agreement</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>الاتفاق الكامل</h4></td>
+    <td class="point-no rtl">١٠.١</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>This Agreement constitutes the entire understanding between the Parties and supersedes all prior agreements, discussions, or communications (oral or written) relating to the subject matter hereof.</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>تشكل هذه الاتفاقية الفهم الكامل والنهائي بين الطرفين، وتُلغي أي اتفاقات أو مناقشات أو مراسلات سابقة (شفوية أو كتابية) تتعلق بموضوعها.</p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">10.2</td>
+    <td><h4>Counterparts and Electronic Signatures</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>النسخ والتوقيع الإلكتروني</h4></td>
+    <td class="point-no rtl">١٠.٢</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>This Agreement may be executed in counterparts, each of which shall be deemed an original. Signatures delivered electronically (e.g., PDF or digital signature platforms) shall be valid and enforceable.</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>يجوز توقيع هذه الاتفاقية بنسخ متعددة، وتُعتبر كل نسخة أصلية. وتُعد التواقيع المُرسلة إلكترونيًا (مثل PDF أو عبر منصات التوقيع الرقمي) صحيحة وملزمة قانونًا.</p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">10.3</td>
+    <td><h4>No Partnership or Employment with Sooq Al Thahab</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>لا شراكة أو علاقة عمل مع سوق الذهب</h4></td>
+    <td class="point-no rtl">١٠.٣</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>Nothing in this Agreement shall be construed to create a partnership, joint venture, or employment relationship between Sooq Al Thahab and either Party.</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>ا يجوز تفسير أي بند في هذه الاتفاقية على أنه ينشئ علاقة شراكة أو مشروع مشترك أو علاقة عمل بين سوق الذهب وأي من الطرفين.</p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">10.4</td>
+    <td><h4>Notices</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>الإشعارات</h4></td>
+    <td class="point-no rtl">١٠.٤</td>
+  </tr>
+
+  <tr>
+      <td class="point-no"></td>
+      <td>
+        <p>All notices under this Agreement must be made in writing and delivered via email, registered mail, or in person to the contact addresses provided by each Party.</p>
+      </td>
+
+      <td class="seperator"></td>
+
+      <td class="rtl">
+        <p>يجب أن تكون جميع الإشعارات بموجب هذه الاتفاقية مكتوبة، وتُرسل عبر البريد الإلكتروني، أو البريد المسجل، أو التسليم المباشر إلى العناوين المعتمدة من كل طرف.</p>
+      </td>
+
+      <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">10.5</td>
+    <td><h4>Assignment</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>التنازل</h4></td>
+    <td class="point-no rtl">١٠.٥</td>
+  </tr>
+
+  <tr>
+      <td class="point-no"></td>
+      <td>
+          <p>A Party may not assign or transfer its rights or obligations under this Agreement without the prior written consent of the other Party.</p>
+      </td>
+
+      <td class="seperator"></td>
+
+      <td class="rtl">
+        <p>لا يجوز لأي طرف التنازل عن حقوقه أو التزاماته بموجب هذه الاتفاقية دون موافقة خطية مسبقة من الطرف الآخر.</p>
+      </td>
+
+      <td class="point-no rtl"></td>
+  </tr>
+
+
+  <tr>
+    <td class="point-no">10.6</td>
+    <td><h4>Good Faith</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>حسن النية</h4></td>
+    <td class="point-no rtl">١٠.٦</td>
+  </tr>
+
+  <tr>
+      <td class="point-no"></td>
+      <td>
+          <p>The Parties agree to act in good faith and in accordance with the principles of trust and cooperation throughout the performance of this Agreement.</p>
+      </td>
+
+      <td class="seperator"></td>
+
+      <td class="rtl">
+        <p>لتزم الطرفان بالتصرف بحسن نية ووفقًا لمبادئ الثقة والتعاون طوال مدة تنفيذ هذه الاتفاقية.</p>
+      </td>
+
+      <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+      <td class="point-no">10.7</td>
+      <td><h4>Language</h4></td>
+      <td class="seperator"></td>
+      <td class="rtl"><h4>اللغة</h4></td>
+      <td class="point-no rtl">١٠.٧</td>
+  </tr>
+
+  <tr>
+      <td class="point-no"></td>
+      <td>
+          <p>In the event of discrepancy between the English and Arabic versions of this Agreement, the [Arabic/English] version shall prevail.</p>
+      </td>
+
+      <td class="seperator"></td>
+
+      <td class="rtl">
+          <p>في حال وجود أي اختلاف أو تعارض بين النسختين العربية والإنجليزية من هذا الاتفاق، تكون النسخة [العربية/الإنجليزية] هي المعتمدة والنافذة.</p>
+      </td>
+
+      <td class="point-no rtl"></td>
+  </tr>
+
+
+  <tr>
+      <td class="point-no">10.8</td>
+      <td><h4>Survival of Clauses</h4></td>
+      <td class="seperator"></td>
+      <td class="rtl"><h4>استمرار سريان بعض البنود</h4></td>
+      <td class="point-no rtl">١٠.٨</td>
+  </tr>
+
+  <tr>
+      <td class="point-no"></td>
+      <td>
+          <p>The provisions relating to confidentiality, indemnity, dispute resolution, and governing law shall survive the termination or expiry of this Agreement.</p>
+      </td>
+
+      <td class="seperator"></td>
+
+      <td class="rtl">
+          <p>تبقى أحكام السرية والتعويض وتسوية النزاعات والقانون الحاكم سارية بعد انتهاء أو إلغاء هذه الاتفاقية.</p>
+      </td>
+
+      <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+      <td class="point-no">10.9</td>
+      <td><h4>Waiver</h4></td>
+      <td class="seperator"></td>
+      <td class="rtl"><h4>التنازل</h4></td>
+      <td class="point-no rtl">١٠.٩</td>
+  </tr>
+
+  <tr>
+      <td class="point-no"></td>
+      <td>
+          <p>A failure or delay by either Party to enforce any provision of this Agreement shall not be deemed a waiver of its rights, nor shall any partial enforcement preclude full enforcement thereafter.</p>
+      </td>
+
+      <td class="seperator"></td>
+
+      <td class="rtl">
+          <p>لا يُعد إخفاق أو تأخير أي طرف في تنفيذ أي بند من بنود هذه الاتفاقية تنازلاً عن حقوقه، كما لا يُعد التنفيذ الجزئي مانعًا من التنفيذ الكامل لاحقًا.</p>
+      </td>
+
+      <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+      <td class="point-no">10.10</td>
+      <td><h4>Third-Party Rights</h4></td>
+      <td class="seperator"></td>
+      <td class="rtl"><h4>حقوق الأطراف الثالثة</h4></td>
+      <td class="point-no rtl">١٠.١٠</td>
+  </tr>
+
+  <tr>
+      <td class="point-no"></td>
+      <td>
+          <p>This Agreement is made solely for the benefit of the Parties and does not grant any rights to any third party, including affiliates, employees, or contractors, unless expressly stated herein.</p>
+      </td>
+
+      <td class="seperator"></td>
+
+      <td class="rtl">
+          <p>تم إبرام هذه الاتفاقية لصالح الطرفين فقط، ولا تمنح أي حقوق لأي طرف ثالث، بما في ذلك الشركات التابعة أو الموظفين أو المتعاقدين، ما لم يُنص على خلاف ذلك صراحةً في هذه الاتفاقية.</p>
+      </td>
+
+      <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">10.11</td>
+    <td><h4>Headings</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>العناوين</h4></td>
+    <td class="point-no rtl">١٠.١١</td>
+  </tr>
+
+  <tr>
+      <td class="point-no"></td>
+      <td>
+          <p>The headings in this Agreement are for convenience only and shall not affect the interpretation of any provision.</p>
+      </td>
+
+      <td class="seperator"></td>
+
+      <td class="rtl">
+          <p>العناوين الواردة في هذه الاتفاقية هي لتسهيل القراءة فقط، ولا تؤثر على تفسير أي بند من بنودها.</p>
+      </td>
+
+      <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <td class="point-no">11.</td>
+    <td><h4>Agreement and Signature</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>قبول الاتفاقية</h4></td>
+    <td class="point-no rtl">١١</td>
+  </tr>
+
+  <tr>
+    <td class="point-no">11.1</td>
+    <td><h4>Acceptance of this Musharakah Contract</h4></td>
+    <td class="seperator"></td>
+    <td class="rtl"><h4>قبول اتفاقية المشاركة</h4></td>
+    <td class="point-no rtl">١١.١</td>
+  </tr>
+
+  <tr>
+    <td class="point-no"></td>
+    <td>
+      <p>By signing this Agreement, both the Provider and the Jeweler confirm that they have read, understood, and fully accept the terms and conditions of this Musharakah Agreement. They acknowledge that this Agreement is binding and enforceable in accordance with its terms.</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <td class="rtl">
+      <p>يؤكد كل من المزود والصائغ/المصمم أنهما قد قرآ وفهما ووافقا بالكامل على الشروط والأحكام المنصوص عليها في اتفاقية المشاركة، ويقران بأنها ملزمة وقابلة للتنفيذ وفقًا لما ورد فيها.</P>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+
+  <tr>
+    <!-- English Side -->
+    <td class="point-no"></td>
+    <td>
+      <!-- Investor -->
+      <p><strong>Provider (Investor):</strong></p>
+      <p>Name: {{ musharakah_contract.investor.name }}</p>
+      <table class="signature-table" style="width: 100%; border: 0">
+        <tr>
+          <td style="width:20%;">
+            <p style="line-height: 40px;">Signature:</p>
+          </td>
+          <td style="width: 80%;">
+            <div style="width: 130px;
+                        height: 40px;
+                        background: lightgray;
+                        text-align: center;
+                        line-height: 40px;
+                        margin-top: 5px;">
+              <img src="{{ musharakah_contract.investor_signature }}"
+                  alt="Investor Signature"
+                  style="width: 100%;
+                          height: 100%;
+                          object-fit: contain;
+                          display: block;">
+            </div>
+          </td>
+        </tr>
+      </table>
+      <p style="margin-top: -2px">Date: {{ musharakah_contract.approved_at|date:"j F Y" }}</p>
+
+      <!-- Jeweler -->
+      <p style="margin-top: 15px;"><strong>Jeweler/Designer:</strong></p>
+      <p>Name: {{ musharakah_contract.jeweler.name }}</p>
+      <table class="signature-table" style="width: 100%; border: 0">
+        <tr>
+          <td style="width:20%;">
+            <p style="line-height: 40px;">Signature:</p>
+          </td>
+          <td style="width: 80%;">
+            <div style="width: 130px;
+                        height: 40px;
+                        background: lightgray;
+                        text-align: center;
+                        line-height: 40px;
+                        margin-top: 5px;">
+              <img src="{{ musharakah_contract.jeweler_signature }}"
+                  alt="Jeweler Signature"
+                  style="width: 100%;
+                          height: 100%;
+                          object-fit: contain;
+                          display: block;">
+            </div>
+          </td>
+        </tr>
+      </table>
+      <p style="margin-top: -2px">Date: {{ musharakah_contract.approved_at|date:"j F Y" }}</p>
+    </td>
+
+    <td class="seperator"></td>
+
+    <!-- Arabic Side -->
+    <td class="rtl">
+      <!-- Investor -->
+      <p><strong>المستثمر:</strong></p>
+      <p>الاسم: {{ musharakah_contract.investor.name }}</p>
+      <table class="signature-table" style="width: 100%; border: 0">
+        <tr>
+          <td style="width:20%;">
+            <p style="line-height: 40px;">التوقيع:</p>
+          </td>
+          <td style="width:80%;">
+            <div style="width: 130px;
+                        height: 40px;
+                        background: lightgray;
+                        text-align: center;
+                        line-height: 40px;
+                        margin-top: 5px;">
+              <img src="{{ musharakah_contract.investor_signature }}"
+                  alt="توقيع المستثمر"
+                  style="width: 100%;
+                          height: 100%;
+                          object-fit: contain;
+                          display: block;">
+            </div>
+          </td>
+        </tr>
+      </table>
+      <p>التاريخ: {{ musharakah_contract.approved_at|date:"j F Y" }}</p>
+
+      <!-- Jeweler -->
+      <p style="margin-top: 15px;"><strong>الصائغ / المصمم:</strong></p>
+      <p>الاسم: {{ musharakah_contract.jeweler.name }}</p>
+      <table class="signature-table" style="width: 100%; border: 0">
+        <tr>
+          <td style="width:20%;">
+            <p style="line-height: 40px;">التوقيع:</p>
+          </td>
+          <td style="width:80%;">
+            <div style="width: 130px;
+                        height: 40px;
+                        background: lightgray;
+                        text-align: center;
+                        line-height: 40px;
+                        margin-top: 5px;">
+              <img src="{{ musharakah_contract.jeweler_signature }}"
+                  alt="توقيع الصائغ"
+                  style="width: 100%;
+                          height: 100%;
+                          object-fit: contain;
+                          display: block;">
+            </div>
+          </td>
+        </tr>
+      </table>
+      <p>التاريخ: {{ musharakah_contract.approved_at|date:"j F Y" }}</p>
+    </td>
+
+    <td class="point-no rtl"></td>
+  </tr>
+</table>
+{% endblock %}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Result - Sooq Al Thahab</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      text-align: center;
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .success {
+      color: #28a745;
+    }
+
+    .error {
+      color: #dc3545;
+    }
+
+    .details {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f8f9fa;
+      border-radius: 5px;
+      text-align: left;
+    }
+
+    .amount {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #007bff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    {% if result == "CAPTURED" %}
+    <h1 class="success">✅ Payment Successful</h1>
+    <p>Your payment has been processed successfully.</p>
+    {% if amount %}
+    <p class="amount">Amount: {{ amount }} BHD</p>
+    {% endif %}
+    {% if payment_id %}
+    <p>Reference: {{ payment_id }}</p>
+    {% endif %}
+    {% if track_id %}
+    <p>Transaction ID: {{ track_id }}</p>
+    {% endif %}
+    {% elif status == "success" %}
+    <h1 class="success">✅ Payment Successful</h1>
+    <p>{{ message|default:"Your payment has been processed successfully." }}</p>
+    {% if amount %}
+    <p class="amount">Amount: {{ amount }} BHD</p>
+    {% endif %}
+    {% if payment_id %}
+    <p>Reference: {{ payment_id }}</p>
+    {% endif %}
+    {% else %}
+    <h1 class="error">❌ Payment {{ result|default:"Failed"|capfirst }}</h1>
+    <p>{{ message|default:"Payment processing failed. Please try again or contact support." }}</p>
+    {% endif %}
+
+    {% if data %}
+    <div class="details">
+      <h3>Transaction Details:</h3>
+      <p><strong>Result:</strong> {{ result|default:"Unknown" }}</p>
+      {% if auth_code %}
+      <p><strong>Auth Code:</strong> {{ auth_code }}</p>
+      {% endif %}
+      {% if track_id %}
+      <p><strong>Track ID:</strong> {{ track_id }}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</body>
+
+</html>

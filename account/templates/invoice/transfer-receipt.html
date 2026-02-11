@@ -1,0 +1,199 @@
+{% extends "invoice/base_invoice.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Transafer_Receipt" %}{% endblock %}
+
+{% block content %}
+<table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+  <tbody>
+    <tr>
+      <td align="center" colspan="3" style="padding-bottom: 10px;">
+        <h4 class="receipt-title">{% trans "TRANSFER RECEIPT" %}</h4>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="3" style="padding-bottom: 10px">
+        <table class="billing-header-table">
+          <tr>
+            <td style="vertical-align: top; width: 33%;">
+              <div>
+                <h6 class="section-title">{% trans "Transaction No" %}</h6>
+                <span class="section-text">{{ transaction.receipt_number }}</span>
+              </div>
+            </td>
+            <td style="vertical-align: top; width: 33%;">
+              <h6 class="section-title">{% trans "Transfered To" %}</h6>
+              <strong class="section-text">{{ transfered_to.name }}</strong>
+              <p class="section-text"><strong>{% trans "Address:" %}</strong> {{ transfered_to.address }}</p>
+              <p class="section-text"><strong>{% trans "Country:" %}</strong> {{ transfered_to.country }}</p>
+              <p class="section-text"><strong>{% trans "Phone:" %}</strong> {{ transfered_to.phone }}</p>
+            </td>
+            <td style="vertical-align: top; width: 34%;">
+              <h6 class="section-title">{% trans "Transfered From" %}</h6>
+              <strong class="section-text">{{ transfered_from.name }}</strong>
+              <p class="section-text"><strong>{% trans "Address:" %}</strong> {{ transfered_from.address }}</p>
+              <p class="section-text"><strong>{% trans "Country:" %}</strong> {{ transfered_from.country }}</p>
+              <p class="section-text"><strong>{% trans "Phone:" %}</strong> {{ transfered_from.phone }}</p>
+              <p class="section-text"><strong>{% trans "IBAN:" %}</strong> {{ transfered_from.iban_code }}</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="3" style="border-left: 3px solid #ccb16a; padding-left: 20px;  padding-top: 0; padding-bottom: 0; line-height: normal;">
+        <table cellpadding="0" cellspacing="0" style="width: 100%">
+          <tr>
+            <td style="padding-top: 0;  padding-bottom: 0; line-height: normal;">
+              <table cellpadding="0" cellspacing="0" style="width: 100%">
+                <tr>
+                  <td colspan="2" style="padding-bottom: 8px; padding-top: 0; font-weight: 700; font-size: 17px; color: #1A1C21;">
+                      {% trans "Transfer" %}
+                  </td>
+                  <td align="right" style="padding-bottom: 8px">
+                    <div style="text-align: right;">
+                      <span style="border: 2px solid #4CAF50; color: #4CAF50; padding: 5px 10px; display: inline-block;">
+                        {{ transaction.status }}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 9px 0;">
+                    {% trans "Transaction Type" %}
+                  </td>
+                  <td align="right" style="color: #1a1c21; text-align: right; padding: 9px 0; ">
+                    {{ transaction.transaction_type }}
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 9px 0;">
+                    {% trans "IBAN Number" %}
+                  </td>
+                  <td align="right" style="color: #1a1c21; text-align: right; padding: 10px 0">
+                    {{ iban_code|default:"N/A" }}
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 9px 0;">
+                    {% trans "Date" %}
+                  </td>
+                  <td align="right" style="color: #1a1c21; text-align: right; padding: 10px 0">
+                    {{ date }}
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 9px 0;">
+                    {% trans "Time" %}
+                  </td>
+                  <td align="right" style="color: #1a1c21; text-align: right; padding: 10px 0">
+                    {{ time }}
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 9px 0;">
+                    {% trans "Material Cost" %}
+                  </td>
+                  <td align="right" style="color: #1a1c21; text-align: right; padding: 10px 0">
+                    {{ billing.currency|default:"BHD" }} {{ purchase_request.order_cost|floatformat:2 }}
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 9px 0;">
+                    {% trans "Premium" %}
+                  </td>
+                  <td align="right" style="color: #1a1c21; text-align: right; padding: 10px 0">
+                    {{ billing.currency|default:"BHD" }} {{ purchase_request.premium|floatformat:2 }}
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 9px 0;">
+                    {% trans "Vat" %}
+                  </td>
+                  <td align="right" style="color: #1a1c21; text-align: right; padding: 9px 0">
+                    {{ billing.currency|default:"BHD" }} {{ purchase_request.vat|floatformat:2 }}
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 9px 0;">
+                    {% trans "Tax" %}
+                  </td>
+                  <td align="right" style="color: #1a1c21; text-align: right; padding: 9px 0">
+                    {{ billing.currency|default:"BHD" }} {{ purchase_request.taxes|floatformat:2 }}
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 9px 0 18px;">
+                    {% trans "Platform Fee" %}
+                  </td>
+                  <td align="right" style="color: #1a1c21; text-align: right; padding: 9px 0 18px;">
+                    {{ billing.currency|default:"BHD" }} {{ purchase_request.platform_fee|floatformat:2 }}
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="font-weight: bold; color: #000000; padding: 7px 0 0; border-top: 1px solid #d7dae0; font-size: 15px; vertical-align: bottom; line-height: normal;">
+                    <p style="margin-bottom: -7px;">
+                      {% trans "Total Amount" %}
+                    </p>
+                  </td>
+                  <td align="right" style="font-weight: bold; color: #000000; text-align: right; padding: 7px 0 0; border-top: 1px solid #d7dae0; font-size: 15px; vertical-align: bottom; line-height: normal;">
+                    <p style="margin-bottom: -7px;">
+                      {{ billing.currency|default:"BHD" }} {{ purchase_request.total_cost|floatformat:2 }}
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td style="height: 47px;"></td>
+    </tr>
+    <tr>
+      <td colspan="3" style="border-left: 3px solid #ccb16a; padding-left: 20px;  padding-top: 0; padding-bottom: 0; line-height: normal;">
+        <table cellpadding="0" cellspacing="0" style="width: 100%">
+          <tr>
+            <td style="padding-top: 0;  padding-bottom: 0; line-height: normal;">
+              <table cellpadding="0" cellspacing="0" style="width: 100%">
+                <tr>
+                  <td colspan="2" style="padding-bottom: 8px; padding-top: 0; font-weight: 700; font-size: 17px; color: #1A1C21;">
+                      {% trans "Balance Summary" %}
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 9px 0;">
+                    {% trans "Previous Balance" %}
+                  </td>
+                  <td align="right" style="color: #1a1c21; text-align: right; padding: 9px 0; ">
+                    {{ transaction.previous_balance }}
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 9px 0 16px;">
+                    {% trans "Total Deducted" %}
+                  </td>
+                  <td align="right" style="color: #1a1c21; text-align: right; padding: 9px 0 16px;">
+                    {{ billing.currency|default:"BHD" }} {{ purchase_request.total_cost|floatformat:2 }}
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="font-weight: bold; color: #000000; padding: 16px 0 6px; border-top: 1px solid #d7dae0; font-size: 15px; line-height: normal;">
+                    {% trans "Current Balance" %}
+                  </td>
+                  <td align="right" style="font-weight: bold; color: #000000; text-align: right; padding: 16px 0 6px; border-top: 1px solid #d7dae0; font-size: 15px; line-height: normal;">
+                    {{ billing.currency|default:"BHD" }} {{ purchase_request.current_balance|floatformat:2 }}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}

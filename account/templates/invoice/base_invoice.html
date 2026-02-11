@@ -1,0 +1,71 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}{% trans "Sooq Al Thahab Billing" %}{% endblock %}</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
+  {% if not is_pdf %}
+    <link href="{% static 'css/pdf_style.css' %}" rel="stylesheet" />
+  {% endif %}
+
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background-image: url("{{ organization_details.watermark_url }}");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <table class="main-wrapper-table" cellpadding="0" cellspacing="0">
+    <thead>
+      <tr>
+        <th align="left" style="padding: 10px 0;">
+          <img src="{{ organization_logo_url }}" alt="Organization Logo" width="100" height="70" style="display: block; width: 100px; height: 70px;" />
+        </th>
+        <th align="right" style="padding: 10px 0;">
+          <div class="org-info">
+            <p class="org-eng"><strong>سوق الذهب الإلكتروني ذ.م.م</strong></p>
+            <p class="org-eng"><strong>THE GOLD MARKET PLATFORM W.L.L</strong></p>
+            <p><strong>VAT Account Number: {{ organization_details.vat_account_number|default:"N/A" }}</strong></p>
+            <p><strong>Commercial Registration Number: {{ organization_details.commercial_registration_number|default:"N/A" }}</strong></p>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="2">
+          {% block content %}{% endblock %}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer class="footer">
+    <table class="footer-table" cellpadding="0" cellspacing="0">
+      <tr>
+        <td class="footer-text">
+          THE GOLD MARKET PLATFORM With Limited Liability (W.L.L.), established in the Kingdom of Bahrain and licensed by the Ministry
+          of Industry, Commerce, and Tourism. Its headquarters is located in Riffa, and its address is Office 302, Building 71, Road 341,
+          Manama 304, Kingdom of Bahrain. The paid-up capital is BHD 25,000 (Twenty-five thousand Bahraini Dinars only).
+          Phone: 17687222, Email: info@sooqalthahab.com, Website: www.sooqalthahab.com
+        </td>
+      </tr>
+    </table>
+  </footer>
+
+</body>
+</html>

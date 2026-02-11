@@ -1,0 +1,94 @@
+{% load i18n %}
+<thead>
+  <tr align="left">
+    <th style="font-weight: 600; width: 250px;">{% trans "Item" %}</th>
+    <th style="text-align: center; font-weight: 600; width: 80px;"></th>
+    <th style="text-align: center; font-weight: 600; width: 80px;"></th>
+    <th style="text-align: center; font-weight: 600; width: 80px;"></th>
+    <th style="text-align: center; font-weight: 600; width: 80px;"></th>
+    <th style="text-align: right; font-weight: 600; width: 120px;">{% trans "Amount" %}</th>
+  </tr>
+</thead>
+<tbody>
+  {% if transaction.musharakah_contract_termination_payment_type == "JEWELER_SETTLEMENT_PAYMENT_TRANSACTION" %}
+    <tr>
+      <td style="font-weight: 600; width: 250px;">Insurance fee</td>
+      <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+      <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+      <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+      <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+      <td style="text-align: right; font-weight: 600; width: 120px;">
+        {{ billing.currency|default:"BHD" }} {{ termination_request.insurance_fee|floatformat:2 }}
+      </td>
+    </tr>
+    {% if termination_request.logistics_cost_payable_by == "JEWELER" %}
+      <tr>
+        <td style="font-weight: 600; width: 250px;">Logistic Cost</td>
+        <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+        <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+        <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+        <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+        <td style="text-align: right; font-weight: 600; width: 120px;">
+          {{ billing.currency|default:"BHD" }} {{ termination_request.logistics_cost|floatformat:2 }}
+        </td>
+      </tr>
+    {% endif %}
+
+  {% elif transaction.musharakah_contract_termination_payment_type == "INVESTOR_LOGISTIC_FEE_PAYMENT_TRANSACTION" %}
+    <tr>
+      <td style="font-weight: 600; width: 250px;">Logistic Cost</td>
+      <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+      <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+      <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+      <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+      <td style="text-align: right; font-weight: 600; width: 120px;">
+        {{ billing.currency|default:"BHD" }} {{ termination_request.logistics_cost|floatformat:2 }}
+      </td>
+    </tr>
+
+  {% elif transaction.musharakah_contract_termination_payment_type == "INVESTOR_REFINING_COST_PAYMENT_TRANSACTION" %}
+    <tr>
+      <td style="font-weight: 600; width: 250px;">Refining Cost</td>
+      <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+      <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+      <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+      <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+      <td style="text-align: right; font-weight: 600; width: 120px;">
+        {{ billing.currency|default:"BHD" }} {{ termination_request.refining_cost|floatformat:2 }}
+      </td>
+    </tr>
+
+  {% elif transaction.musharakah_contract_termination_payment_type == "INVESTOR_EARLY_TERMINATION_PAYMENT_TRANSACTION" %}
+    <tr>
+      <td style="font-weight: 600; width: 250px;">Early Termination</td>
+      <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+      <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+      <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+      <td style="text-align: center; font-weight: 600; width: 80px;"></td>
+      {% if termination_request.cost_retail_payment_option == "PAY_RETAIL" %}
+        <td style="text-align: right; font-weight: 600; width: 120px;">
+          {{ billing.currency|default:"BHD" }}
+          {% if termination_request.retail_price > penalty_amount %}
+            {{ termination_request.retail_price|floatformat:2 }}
+          {% else %}
+            {{ penalty_amount|floatformat:2 }}
+          {% endif %}
+        </td>
+      {% else %}
+        <td style="text-align: right; font-weight: 600; width: 120px;">
+          {{ billing.currency|default:"BHD" }}
+          {% if termination_request.manufacturing_cost > penalty_amount %}
+            {{ termination_request.manufacturing_cost|floatformat:2 }}
+          {% else %}
+            {{ penalty_amount|floatformat:2 }}
+          {% endif %}
+        </td>
+      {% endif %}
+    </tr>
+  {% endif %}
+
+  <tr>
+    <td style="height: 100px;"></td>
+    <td colspan="6"></td>
+  </tr>
+</tbody>

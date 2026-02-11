@@ -1,0 +1,25 @@
+{% load i18n %}
+
+<thead>
+  <tr align="left">
+    <th style="font-weight: 600; width: 250px;">{% trans "Item" %}</th>
+    <th style="text-align: center; font-weight: 600; width: 80px;">{% trans "Qty" %}</th>
+    <th style="text-align: center; font-weight: 600; width: 80px;">{% trans "Weight" %}</th>
+    <th style="text-align: center; font-weight: 600; width: 80px;">{% trans "Karat" %}</th>
+    <th style="text-align: center; font-weight: 600; width: 80px;">{% trans "Rate" %}</th>
+    <th style="text-align: right;font-weight: 600; width: 120px;">{% trans "Amount" %}</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td style="font-weight: 600; width: 250px;">{{ purchase_request.name }}</td>
+    <td style="text-align: center; font-weight: 600; width: 80px;">{{ purchase_request.requested_quantity }}</td>
+    <td style="text-align: center; font-weight: 600; width: 80px;">{{ purchase_request.weight|floatformat:2 }} g</td>
+    <td style="text-align: center; font-weight: 600; width: 80px;">{{ purchase_request.carat_type|default:"-" }}</td>
+    <td style="text-align: center; font-weight: 600; width: 80px;">{{ purchase_request.rate|floatformat:2 }}</td>
+    <td style="text-align: right; font-weight: 600; width: 120px;">
+      {{ billing.currency|default:"BHD" }} {{ purchase_request.order_cost|floatformat:2 }}
+    </td>
+  </tr>
+  <tr><td style="height: 100px;"></td><td colspan="6"></td></tr>
+</tbody>

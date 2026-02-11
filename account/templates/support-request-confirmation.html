@@ -1,0 +1,36 @@
+{% extends "base_email.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Support Request Confirmation" %}
+{% endblock %}
+
+{% block content %}
+  <h1 style="font-size: 24px; color: #333; margin-bottom: 20px; text-align: center;">
+    {% trans "Contact Support Request" %}
+  </h1>
+  <table style="width: 100%; max-width: 600px; margin: 0 auto; background-color: #ffffff; border:0px solid #ffffff; border-bottom: 0; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); border-collapse: collapse;" cellspacing="0" cellpadding="0">
+    <tr>
+      <td style="padding: 16px;">
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-bottom: 16px;">
+          {% blocktrans %}Dear {{ full_name }},{% endblocktrans %}
+        </p>
+
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-bottom: 16px;">
+          {% trans "Thank you for reaching out. Your inquiry has been received and is currently under review. Our support team will respond within 48 hours." %}
+        </p>
+
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-bottom: 16px;">
+          {% blocktrans %}
+            For urgent matters, you can call us at {{ support_contact_number }}.
+          {% endblocktrans %}
+        </p>
+
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-top: 15px;">
+          {% trans "Best regards," %}<br>
+          {% trans "Sooq Al Thahab Support Team" %}
+        </p>
+      </td>
+    </tr>
+  </table>
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends "invoice/base_invoice.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Tax_Invoice" %}{% endblock %}
+
+{% block content %}
+<table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+  <tbody>
+    <tr>
+      <td align="center" colspan="3" style="padding-bottom: 58px;">
+        <h4 class="receipt-title">{% trans "TAX INVOICE" %}</h4>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="3" style="padding-bottom: 40px">
+        <table class="billing-header-table">
+          <tr>
+            <td style="vertical-align: top; width: 24%;">
+              <div>
+                <h6 class="section-title">{% trans "Invoice No" %}</h6>
+                <span class="section-text">{{ invoice_number }}</span>
+              </div>
+              <div>
+                <h6 class="section-title">{% trans "Date" %}</h6>
+                <span class="section-text">{{ date }}</span>
+              </div>
+            </td>
+            <td style="vertical-align: top; width: 40%;">
+              <h6 class="section-title">{% trans "Bill To" %}</h6>
+              <strong class="section-text">{{ bill_to.name|default_if_none:"N/A" }}</strong>
+              <p class="section-text"><strong>{% trans "Address:" %}</strong> {% if bill_to.address %}{{ bill_to.address }}{% else %}N/A{% endif %}</p>
+              <p class="section-text"><strong>{% trans "Country:" %}</strong> {% if bill_to.country %}{{ bill_to.country }}{% else %}N/A{% endif %}</p>
+              <p class="section-text"><strong>{% trans "ID:" %}</strong> {{ bill_to.id|default_if_none:"N/A" }}</p>
+              <p class="section-text"><strong>{% trans "Phone:" %}</strong> {{ bill_to.phone|default_if_none:"N/A" }}</p>
+            </td>
+            <td style="vertical-align: top; width: 40%;">
+              <h6 class="section-title">{% trans "Sold By" %}</h6>
+              <strong class="section-text">{{ sold_by.name|default_if_none:"N/A" }}</strong>
+              <p class="section-text"><strong>{% trans "Address:" %}</strong> {% if sold_by.address %}{{ sold_by.address }}{% else %}N/A{% endif %}</p>
+              <p class="section-text"><strong>{% trans "Country:" %}</strong> {% if sold_by.country %}{{ sold_by.country }}{% else %}N/A{% endif %}</p>
+              <p class="section-text"><strong>{% trans "CR No:" %}</strong> {{ sold_by.cr_number|default_if_none:"N/A" }}</p>
+              <p class="section-text"><strong>{% trans "VAT Acc No:" %}</strong> {{ sold_by.vat_acc_number|default_if_none:"N/A" }}</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="3" style="border-left: 3px solid #ccb16a; padding-left: 20px;  padding-top: 0; padding-bottom: 0; line-height: normal;">
+        <table style="width: 100%;">
+          <tr>
+            <td style="padding: 0; font-weight: 700; line-height: normal; font-size: 16px;">{% trans "Purchase details" %}</td>
+          </tr>
+          <tr>
+            <td colspan="3" style="padding: 0; line-height: normal;">
+              <table class="subscription-details-table">
+                {% if purchase_request.material_type == 'metal' %}
+                  {% include "invoice/partials/metal_details.html" %}
+                {% elif purchase_request.material_type == 'stone' %}
+                  {% include "invoice/partials/stone_details.html" %}
+                {% endif %}
+                <tfoot>
+                  <tr>
+                    <td colspan="5" class="total-amount-label" style="padding-top: 10px; color: #1A1C21;">{% trans "Sub Total" %}</td>
+                    <td class="total-amount-label text-right" style="padding-top: 10px; font-weight: 400;">{{ billing.currency|default:"BHD" }} {{ purchase_request.order_cost|default:0|floatformat:2 }}</td>
+                  </tr>
+                  {% if purchase_request.request_type == 'PURCHASE' %}
+                    <tr>
+                      <td colspan="5" style="font-weight: 600; color: #1A1C21;">{% trans "Add Premium Price" %}</td>
+                      <td class="text-right">{{ billing.currency|default:"BHD" }} {{ purchase_request.premium|default:0|floatformat:2 }}</td>
+                    </tr>
+                  {% endif %}
+                  <tr>
+                    <td colspan="5" style="font-weight: 600; color: #1A1C21;">{% trans "Add " %}{{ organization_details.name }}{% trans " Service Fees" %}</td>
+                    <td class="text-right">{{ billing.currency|default:"BHD" }} {{ purchase_request.platform_fee|default:0|floatformat:2 }}</td>
+                  </tr>
+                  <tr>
+                    <td colspan="5" style="font-weight: 600; color: #1A1C21;">
+                      {% trans "Add VAT" %}
+                      ({% widthratio vat_rate|default:0 1 100 as vat_percent %}{{ vat_percent }}%)
+                    </td>
+                    <td class="text-right">
+                      {{ billing.currency|default:"BHD" }}
+                      {{ purchase_request.vat|default:0|floatformat:2 }}
+                    </td>
+                  </tr>
+                  {% if purchase_request.taxes != '0.0000' and purchase_request.taxes %}
+                    <tr>
+                      <td colspan="5" style="padding-bottom: 15px; font-weight: 600; color: #1A1C21;">{% trans "Tax" %}</td>
+                      <td class="text-right" style="padding-bottom: 15px;">{{ billing.currency|default:"BHD" }} {{ purchase_request.taxes|default:0|floatformat:2 }}</td>
+                    </tr>
+                  {% endif %}
+                  {% if purchase_request.request_type == 'PURCHASE' and purchase_request.pro_rata_mode == "PREPAID" %}
+                    <tr>
+                      <td colspan="5" style="padding-bottom: 15px; font-weight:600; color: #1A1C21;">{% trans "Add " %}{{ organization_details.name }}{% trans " Subscription Fees" %}</td>
+                      <td class="text-right" style="padding-bottom: 15px;">
+                        {{ billing.currency|default:"BHD" }} {{ purchase_request.pro_rata_fee|default:0|floatformat:2 }}
+                      </td>
+                    </tr>
+                  {% elif purchase_request.request_type == 'PURCHASE' and purchase_request.pro_rata_mode == "POSTPAID" %}
+                    <tr>
+                      <td colspan="5" style="padding-bottom: 15px; font-weight: 600; color: #1A1C21;">
+                        {% trans "Add " %}{{ organization_details.name }}{% trans " Subscription Fees" %}
+                        <span style="color: #fa2b18ff; font-weight: 400; margin-left: 5px;">{% trans "The postpaid fee of " %}{{ purchase_request.annual_pro_rata_fee|default:0|floatformat:4 }}{{ billing.currency|default:" BHD" }}{% trans " for this product will be charged on an annual basis." %}
+                        </span>
+                      </td>
+                      <td class="text-right" style="padding-bottom: 15px; color: #fa2b18ff;">
+                        {{ billing.currency|default:"BHD" }} {{ purchase_request.pro_rata_fee|default:0|floatformat:2 }}
+                      </td>
+                    </tr>
+                  {% endif %}
+                  <tr>
+                    <td colspan="5" style="font-weight: bold; color: #000000; padding: 5px 0 0; border-top: 1px solid #d7dae0; font-size: 15px; vertical-align: bottom; line-height: normal;">
+                      <p style="margin-bottom: -7px;">
+                        {% trans "Total" %}
+                      </p>
+                    </td>
+                    <td align="right" style="font-weight: bold; color: #000000; text-align: right; padding: 5px 0 0; border-top: 1px solid #d7dae0; font-size: 15px; vertical-align: bottom; line-height: normal;">
+                      <p style="margin-bottom: -7px;">{{ billing.currency|default:"BHD" }} {{ purchase_request.total_cost|default:0|floatformat:2 }}</p>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}

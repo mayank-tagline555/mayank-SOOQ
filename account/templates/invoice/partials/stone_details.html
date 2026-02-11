@@ -1,0 +1,25 @@
+{% load i18n %}
+
+<thead>
+  <tr align="left">
+    <th style="font-weight: 600; width: 250px;">{% trans "Item" %}</th>
+    <th style="text-align: center; font-weight: 600; width: 80px;">{% trans "Type" %}</th>
+    <th style="text-align: center; font-weight: 600; width: 80px;">{% trans "Shape" %}</th>
+    <th style="text-align: center; font-weight: 600; width: 80px;">{% trans "Weight" %}</th>
+    <th style="text-align: center; font-weight: 600; width: 80px;">{% trans "Serial No" %}</th>
+    <th style="text-align: right; font-weight: 600; width: 120px;">{% trans "Amount" %}</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td style="font-weight: 600; width: 250px;">{{ purchase_request.name }}</td>
+    <td style="text-align: center; font-weight: 600;">{{ purchase_request.material_type }}</td>
+    <td style="text-align: center; font-weight: 600;">{{ purchase_request.shape_cut|default:"-" }}</td>
+    <td style="text-align: center; font-weight: 600;">{{ purchase_request.weight|floatformat:2 }} ct</td>
+    <td style="text-align: center; font-weight: 600;">{{ purchase_request.report_number|default:"-" }}</td>
+    <td style="text-align: right; font-weight: 600; width: 120px;">
+      {{ billing.currency|default:"BHD" }} {{ purchase_request.order_cost|floatformat:2 }}
+    </td>
+  </tr>
+  <tr><td style="height: 100px;"></td><td colspan="6"></td></tr>
+</tbody>

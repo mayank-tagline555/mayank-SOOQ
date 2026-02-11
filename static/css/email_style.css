@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
+body {
+    font-family: "DM Sans", Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    /* max-width: 100%; */
+    object-fit: cover;
+}
+
+a {
+    text-decoration: none;
+}
+
+.email {
+    background-color: #f1f6fd;
+    min-height: 40rem;
+    padding: 40px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.email-box {
+    max-width: 600px;
+    margin: 118px auto 0 auto;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #dbeffb;
+    overflow: hidden;
+    border-bottom: 6px solid #158bd4;
+}
+
+.header {
+    padding: 19px 0 23px 0;
+    border-radius: 10px 10px 0px 0;
+    position: relative;
+    z-index: 1;
+    background: url(../images/header-bg.png),
+        linear-gradient(
+            338.54deg,
+            #ffffff -78.4%,
+            rgba(255, 255, 255, 0.5) 20.32%
+        );
+    background-blend-mode: overlay;
+}
+
+/* Remaining CSS styles */

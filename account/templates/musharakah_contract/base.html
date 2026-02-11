@@ -1,0 +1,288 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>
+    {% block title %}{% trans "Musharakah Agreement" %}{% endblock %}
+  </title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    @page {
+      margin: 110px 60px 110px 60px;
+      padding: 0;
+
+      @top-center {
+        content: element(header);
+      }
+
+      @bottom-center {
+        content: element(footer);
+        padding-top: 20px;
+      }
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      position: running(header);
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    .header img {
+      width: 120px;
+      height: auto;
+    }
+
+    .footer {
+      position: running(footer);
+      font-size: 9px;
+      color: #3f3f3f;
+      text-align: center;
+      border-top: 1px solid #d7dae0;
+      padding-top: 6px;
+      background: white;
+    }
+    .footer span {
+      line-height: normal;
+      display: block;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin: 5px 0;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    table.main-wrapper-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    td {
+      vertical-align: top;
+    }
+
+    .top-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 200px;
+      margin-top: -180px;
+      margin-left: -130px;
+      z-index: -1;
+    }
+
+    .middle-image {
+      position: fixed;
+      top: 45%;
+      right: 0;
+      width: 300px;
+      height: 300px;
+      margin-right: -180px;
+      opacity: 0.8;
+      z-index: -1;
+    }
+
+    .top-image img,
+    .middle-image img {
+      height: 100%;
+      width: 100%;
+    }
+
+    .investor-signature,
+    .signature {
+      position: fixed;
+      bottom: -45px;
+      width: 130px;
+      height: 38px;
+      line-height: 38px;
+      background: lightgray;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .investor-signature {
+      right: 138px;
+    }
+
+    .signature {
+      right: 0px;
+    }
+
+    .investor-signature img,
+    .signature img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .agreement-table {
+      border-collapse: collapse;
+      font-size: 13px;
+      width: 100%;
+    }
+    .agreement-table td {
+      border: 1px solid black;
+      border-top: 0;
+      border-bottom: 0;
+      padding: 0 6px;
+
+      background-image: linear-gradient(
+        to bottom,
+        black 0.5px,
+        transparent 0.5px
+      );
+      background-repeat: repeat-y;
+      background-size: 100% calc(100% + 0.5px);
+      background-position: bottom;
+    }
+
+    .agreement-table tr > td:first-child,
+    .agreement-table tr > td:last-child {
+      width: 1%;
+    }
+    .agreement-table tr > td:nth-child(2),
+    .agreement-table tr > td:nth-child(4) {
+      width: 49%;
+    }
+
+    .agreement-table td h2,
+    .agreement-table td h3,
+    .agreement-table td h4 {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1 !important;
+      margin: 4px 0;
+    }
+    .agreement-table td h4 {
+      font-size: 13px;
+    }
+    .seperator {
+      min-width: 10px;
+    }
+    .point-no {
+      min-width: 35px;
+      vertical-align: middle;
+      font-size: 14px;
+      line-height: 1;
+    }
+    .rtl {
+      direction: rtl;
+      text-align: right;
+    }
+    .rtl ul {
+      list-style: none;
+      padding-right: 10px;
+    }
+
+    .rtl ul li {
+      position: relative;
+      padding-right: 10px;
+    }
+
+    .rtl ul li::before {
+      content: "•";
+      position: absolute;
+      right: 0px;
+      font-weight: bold;
+    }
+
+    .rtl ol {
+      list-style-position: inside;
+      font-weight: bold;
+    }
+    .agreement-table td .signature-table td {
+      background: none;
+      border: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Footer (must be declared early for running element to be recognized on all pages) -->
+  <div class="footer">
+    <span>
+      سوق الذھب الإلكتروني - شركة ذات مسؤولیة محدودة (ذ.م.م.)، تأسست في مملكة
+      البحرین، ومرخصة من قبل وزارة الصناعة والتجارة والسیاحة برقم السجل
+      التجاري 1-139599، ومقرھا الرئیسي في الرفاع، مملكة البحرین. ھاتف:
+      17687222 ص.ب: [ضع رقم صندوق البرید إن وجد]، المنامة 304 رأس المال
+      المدفوع: د.ب. 25,000 (خمسة وعشرون ألف دینار بحریني فقط). عنوانھا: مكتب
+      302، مبنى 71، طریق 341، المنامة 304
+    </span>
+    <span>
+      البرید الإلكتروني: info@sooqalthahab.com الموقع الإلكتروني:
+      www.sooqalthahab.com
+    </span>
+  </div>
+
+  <!-- Footer - English Version -->
+  <!--
+  <div class="footer">
+""    Electronic Gold Market – a Limited Liability Company (W.L.L.), established in the Kingdom of Bahrain, licensed by the Ministry of Industry, Commerce and Tourism under Commercial Registration No. 139599-1, and headquartered in Riffa, Kingdom of Bahrain.
+    Telephone: 17687222, P.O. Box [insert if available], Manama 3.
+    Paid-up capital: BHD 25,000 (Twenty-Five Thousand Bahraini Dinars only).
+    Address: Office 302, Building 71, Road 341, Manama 3.
+    Email: info@sooqalthahab.com, Website: www.sooqalthahab.com
+  </div>
+  -->
+
+    <!-- Background Images -->
+    <div class="top-image">
+      <img
+        src="{{ organization_details.musharakah_bg }}"
+        alt="Background Image Top"
+      />
+    </div>
+
+    <div class="middle-image">
+      <img
+        src="{{ organization_details.musharakah_bg }}"
+        alt="Background Image Middle"
+      />
+    </div>
+
+    <div class="investor-signature">
+      <img
+        src="{{ musharakah_contract.investor_signature }}"
+        alt="Saver Sign"
+      />
+    </div>
+    <div class="signature">
+      <img src="{{ musharakah_contract.jeweler_signature }}" alt="Des. Sign" />
+    </div>
+
+    <!-- Header that repeats on every page -->
+    <div class="header">
+      <img
+        src="{{ organization_logo_url }}"
+        alt="{% trans 'Organization Logo' %}"
+      />
+    </div>
+
+    <!-- Page Content -->
+    <div class="main-wrapper">{% block content %}{% endblock %}</div>
+  </body>
+</html>

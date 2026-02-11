@@ -1,0 +1,155 @@
+@page {
+  size: A4;
+  margin: 10mm 15mm;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  color: #1a1c21;
+}
+
+.main-wrapper-table {
+  width: 100%;
+  max-width: 210mm;
+  margin: 0 auto;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+footer {
+  page-break-after: always;
+  page-break-inside: avoid;
+}
+
+.org-info {
+  width: 250px;
+  max-width: 250px;
+  text-align: center;
+  margin-left: auto;
+}
+.org-info p {
+  margin: 0;
+  font-size: 9px;
+  color: #3f3f3f;
+  line-height: 1.4;
+}
+.org-info .org-eng strong {
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.org-info p strong{
+  font-size: 10px;
+}
+.footer-text {
+  color: #3f3f3f;
+  font-size: 9px;
+  border-top: 1px solid #d7dae0;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.watermark-bg {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 70%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.1;
+}
+
+.receipt-title {
+  text-align: center;
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1;
+  padding-top: 4px;
+  padding-bottom: 12px;
+}
+
+.section-title {
+  margin: 0 0 3px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.section-text {
+  font-size: 12px;
+  color: #5e6470;
+  margin: 0 0 4px;
+  line-height: 1.4;
+  display: block;
+}
+.section-text strong{
+  margin: 0;
+}
+
+.billing-header-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.subscription-details-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.subscription-details-table th {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #1a1c21;
+  text-align: left;
+  padding-bottom: 14px;
+}
+
+.subscription-details-table td {
+  font-size: 12px;
+  color: #5e6470;
+  vertical-align: top;
+  padding: 6px 0;
+}
+
+.subscription-details-table tfoot td {
+  padding: 5px 0;
+}
+
+.total-amount-label,
+.total-amount-value {
+  font-size: 13px;
+  color: #000000;
+  padding: 6px 0;
+  font-weight: bold;
+  border-top: 1px solid #d7dae0;
+}
+
+.border-left-highlight {
+  border-left: 3px solid #ccb16a;
+  padding-left: 15px;
+}
+
+.text-right{
+  text-align: right;
+}

@@ -1,0 +1,141 @@
+{% extends "pool/base.html" %}
+{% load i18n static %}
+
+{% block title %}Pool Agreement{% endblock %}
+
+{% block content %}
+    <table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; margin-bottom: 10px;">
+        <tr>
+            <td style="width: 50%; padding: 10px 10px 0 0; vertical-align: top;">
+                <p style="font-weight: bold; font-size: 16px; margin: 0;">Pool Agreement</p>
+            </td>
+            <td class="rtl" dir="rtl" style="width: 50%; padding: 10px 0 0 10px; vertical-align: top; text-align: right;">
+                <p style="font-weight: bold; font-size: 16px; margin: 0;">اتفاقية تجمع</p>
+            </td>
+        </tr>
+    </table>
+
+    <table class="agreement-table">
+        <tr>
+            <td style="width: 50%;">
+                <h2 style="text-align: center; margin: 4px 0 0 0;">Terms and Conditions</h2>
+            </td>
+            <td class="seperator" style="width: 10px"></td>
+            <td style="width: 50%">
+                <h2 style="text-align: right; margin: 4px 0 0 0;">اتفاقیة المشاركة</h2>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width: 50%;">
+                {{ terms_and_condition_en|safe }}
+            </td>
+            <td class="seperator" style="width: 10px"></td>
+            <td style="width: 50%" class="rtl" dir="rtl">
+                {{ terms_and_condition_ar|safe }}
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width: 50%;">
+                <h4>Agreement and Signature</h4>
+            </td>
+            <td class="seperator" style="width: 10px"></td>
+            <td style="width: 50%" class="rtl" dir="rtl">
+                <h4>الاتفاقية والتوقيع</h4>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width: 50%;">
+                <h4>Acceptance of this Pool Agreement</h4>
+            </td>
+            <td class="seperator" style="width: 10px"></td>
+            <td style="width: 50%" class="rtl" dir="rtl">
+                <h4>قبول اتفاقية التجمع هذه</h4>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width: 50%;">
+                <p>By signing this Agreement, the Contributor confirms that they have read, understood, and fully accept the terms and conditions of this Pool Agreement. They acknowledge that this Agreement is binding and enforceable in accordance with its terms.</p>
+            </td>
+            <td class="seperator" style="width: 10px"></td>
+            <td style="width: 50%" class="rtl" dir="rtl">
+                <p>بتوقيع هذه الاتفاقية، يؤكد المساهم أنه قد قرأ وفهم وقبل تمامًا الشروط والأحكام الواردة في اتفاقية التجمع هذه. ويقر بأن هذه الاتفاقية ملزمة وقابلة للتنفيذ وفقًا لشروطه.</p>
+            </td>
+        </tr>
+
+        {% if pool_contribution %}
+        <tr>
+            <td style="width: 50%;">
+                <p><strong>Contributor:</strong></p>
+                <p>Name: {{ contributor_name|default:pool_contribution.participant.name }}</p>
+                {% if signature_url %}
+                <table class="signature-table" style="width: 100%; border: 0">
+                    <tr>
+                        <td style="width:20%;">
+                            <p style="line-height: 40px;">Signature:</p>
+                        </td>
+                        <td style="width: 80%;">
+                            <div style="width: 130px;
+                                        height: 40px;
+                                        background: lightgray;
+                                        text-align: center;
+                                        line-height: 40px;
+                                        margin-top: 5px;">
+                                <img src="{{ signature_url }}"
+                                    alt="Contributor Sign"
+                                    style="width: 100%;
+                                            height: 100%;
+                                            object-fit: contain;
+                                            display: block;">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                {% endif %}
+                {% if pool_contribution.approved_at %}
+                <p style="margin-top: -2px">Date: {{ pool_contribution.approved_at|date:"j F Y" }}</p>
+                {% elif pool_contribution.created_at %}
+                <p style="margin-top: -2px">Date: {{ pool_contribution.created_at|date:"j F Y" }}</p>
+                {% endif %}
+            </td>
+            <td class="seperator" style="width: 10px"></td>
+            <td style="width: 50%" class="rtl" dir="rtl">
+                <p><strong>المساهم:</strong></p>
+                <p>الاسم: {{ contributor_name|default:pool_contribution.participant.name }}</p>
+                {% if signature_url %}
+                <table class="signature-table" style="width: 100%; border: 0">
+                    <tr>
+                        <td style="width:20%;">
+                            <p style="line-height: 40px;">التوقيع:</p>
+                        </td>
+                        <td style="width: 80%;">
+                            <div style="width: 130px;
+                                        height: 40px;
+                                        background: lightgray;
+                                        text-align: center;
+                                        line-height: 40px;
+                                        margin-top: 5px;">
+                                <img src="{{ signature_url }}"
+                                    alt="توقيع المساهم"
+                                    style="width: 100%;
+                                            height: 100%;
+                                            object-fit: contain;
+                                            display: block;">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                {% endif %}
+                {% if pool_contribution.approved_at %}
+                <p style="margin-top: -2px">التاريخ: {{ pool_contribution.approved_at|date:"j F Y" }}</p>
+                {% elif pool_contribution.created_at %}
+                <p style="margin-top: -2px">التاريخ: {{ pool_contribution.created_at|date:"j F Y" }}</p>
+                {% endif %}
+            </td>
+        </tr>
+        {% endif %}
+    </table>
+{% endblock %}

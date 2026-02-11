@@ -1,0 +1,45 @@
+{% extends "base_email.html" %}
+{% load i18n %}
+
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block content %}
+  <h1 style="font-size: 24px; color: #333; margin-bottom: 16px; text-align: center;">
+    {{ title }}
+  </h1>
+  <table style="width: 100%; max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 0px solid #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); border-collapse: collapse;" cellspacing="0" cellpadding="0">
+    <tbody>
+      <tr>
+        <td colspan="2" style="padding: 16px; text-align: center;">
+          <p style="font-size: 16px; color: #333;">
+            {{ body }}
+          </p>
+        </td>
+      </tr>
+
+      {% if email %}
+      <tr style="background-color: #ffffff;">
+        <th style="padding: 12px; text-align: left; color: #333;">{% trans "Email" %}</th>
+        <td style="padding: 12px; color: #333;">{{ email }}</td>
+      </tr>
+      {% endif %}
+
+      {% if phone_number %}
+      <tr style="background-color: #ffffff;">
+        <th style="padding: 12px; text-align: left; color: #333;">{% trans "Phone Number" %}</th>
+        <td style="padding: 12px; color: #333;">{{ phone_number }}</td>
+      </tr>
+      {% endif %}
+
+      <tr>
+        <td colspan="2" style="padding: 20px 12px 0; text-align: center;">
+          <p style="font-size: 16px; color: #333;">
+            {% trans "Please log into the app to check to contact information." %}
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}

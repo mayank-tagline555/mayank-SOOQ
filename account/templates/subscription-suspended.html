@@ -1,0 +1,50 @@
+{% extends "base_email.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Business Subscription Suspended" %}
+{% endblock %}
+
+{% block content %}
+  <h1 style="font-size: 24px; margin-bottom: 20px; text-align: center;">
+    {% trans "Business Subscription Suspended" %}
+  </h1>
+  <table style="width: 100%; max-width: 600px; margin: 0 auto; background-color: #ffffff; border:0px solid #ffffff; border-bottom: 0; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); border-collapse: collapse;" cellspacing="0" cellpadding="0">
+    <tr>
+      <td style="padding: 16px;">
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-bottom: 16px;">
+          {% blocktrans %}Dear {{ display_name }},{% endblocktrans %}
+        </p>
+
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-bottom: 16px;">
+          {% blocktrans with plan_name=plan_name %}
+            We regret to inform you that your <strong>{{ plan_name }}</strong> business subscription has been suspended.
+          {% endblocktrans %}
+        </p>
+
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-bottom: 16px;">
+          {% trans "To restore your access to all features and continue using our services, please purchase a paid subscription plan." %}
+        </p>
+
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-bottom: 16px;">
+          {% trans "We value your business and want to ensure you can continue to benefit from our platform. If you have any questions about purchasing a subscription plan or need assistance, our support team is here to help." %}
+        </p>
+
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-bottom: 16px;">
+          {% blocktrans %}
+            To resolve this matter or inquire further, please contact support: {{ support_email }} | {{ support_contact_number }}
+          {% endblocktrans %}
+        </p>
+
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-bottom: 16px;">
+          {% trans "Thank you for your understanding." %}
+        </p>
+
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-top: 15px;">
+          {% trans "Best regards," %}<br>
+          {% trans "The Sooq Al Thahab Team" %}
+        </p>
+      </td>
+    </tr>
+  </table>
+{% endblock %}

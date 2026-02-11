@@ -1,0 +1,123 @@
+{% extends "invoice/base_invoice.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Termination Receipt" %}{% endblock %}
+
+{% block content %}
+<table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+  <tbody>
+    <tr>
+      <td align="center" colspan="3" style="padding-bottom: 40px; padding-top: 10px">
+        <h4 class="receipt-title">{% trans "TERMINATION RECEIPT" %}</h4>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="3" style="padding-bottom: 40px">
+        <table class="billing-header-table">
+          <tr>
+            <td style="vertical-align: top; width: 33%;">
+              <div>
+                <h6 class="section-title">{% trans "Receipt No" %}</h6>
+                <span class="section-text">{{ transaction.receipt_number }}</span>
+              </div>
+              <div>
+                <h6 class="section-title">{% trans "Paid on" %}</h6>
+                <span class="section-text">{{ transaction_date|date:"d/m/Y" }}</span>
+              </div>
+            </td>
+            <td style="vertical-align: top; width: 33%;">
+              <h6 class="section-title">{% trans "Bill To" %}</h6>
+              <strong class="section-text">{{ display_name }}</strong>
+              <p class="section-text"><strong>{% trans "Email:" %}</strong> {{ business_user.email }}</p>
+              <p class="section-text"><strong>{% trans "Transaction ID:" %}</strong> {{ transaction_id }}</p>
+            </td>
+            <td style="vertical-align: top; width: 34%;">
+              <h6 class="section-title">{% trans "Bill From" %}</h6>
+              <strong class="section-text">{{ organization_details.name }}</strong>
+              <p class="section-text"><strong>{% trans "Address:" %}</strong> {{ organization_details.address }}</p>
+              <p class="section-text"><strong>{% trans "Country:" %}</strong> {{ organization_details.country }}</p>
+              <p class="section-text"><strong>{% trans "VAT Acc No:" %}</strong> {{ organization_details.vat_account_number }}</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="3" class="border-left-highlight">
+        <table style="width: 100%;">
+          <tr>
+            <td style="font-weight: 600; padding-bottom: 10px;">{{title}}</td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <table class="subscription-details-table">
+                <thead>
+                  <tr align="left">
+                    <th>{% trans "Description" %}</th>
+                    <th style="text-align: center"></th>
+                    <th style="text-align: right";>{% trans "Amount" %}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      {% if payment_type == "jeweler_settlement_payment" %}
+                        <strong>{% trans "Insurance Fee" %}</strong><br>
+                      {% endif %}
+                    </td>
+                    <td style="overflow-wrap: break-word; word-wrap: break-word; word-break: break-all; width: 150px; text-align: center;">
+                    </td>
+                    <td class="text-right">{{ billing.currency|default:"BHD" }} {{ insurance_fees|floatformat:2 }}<br>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      {% if payment_type == "jeweler_settlement_payment" %}
+                        <strong>{% trans "Logistic Fee" %}</strong><br>
+                      {% endif %}
+                    </td>
+                    <td style="overflow-wrap: break-word; word-wrap: break-word; word-break: break-all; width: 150px; text-align: center;">
+                    </td>
+                    <td class="text-right">{{ billing.currency|default:"BHD" }} {{ logistics_cost|floatformat:2 }}<br>
+                    </td>
+                  </tr>
+                  </tr>
+                  <tr><td style="height: 100px;"></td><td colspan="3"></td></tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="2" class="total-amount-label" style="padding-top: 10px; color: #1A1C21;">{% trans "Sub Total" %}</td>
+                    <td class="total-amount-label text-right" style="padding-top: 10px; font-weight: 400;">{{ billing.currency|default:"BHD" }} {{ billing.base_amount|floatformat:2 }}</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="font-weight: 600; color: #1A1C21;">{% trans "Add VAT" %} (
+                      {% widthratio billing.vat_rate 1 100 as vat_percent %}
+                      {{ vat_percent }}%
+                    )</td>
+                    <td class="text-right">{{ billing.currency|default:"BHD" }} {{ billing.vat_amount|floatformat:2 }}</td>
+                  </tr>
+                  {% if billing.tax_amount != '0.00' and billing.tax_amount %}
+                    <tr>
+                      <td colspan="2" style="font-weight: 600; color: #1A1C21;">{% trans "Tax" %} (
+                        {% widthratio billing.tax_rate 1 100 as tax_percent %}
+                        {{ tax_percent }}%
+                      )</td>
+                      <td class="text-right">{{ billing.currency|default:"BHD" }} {{ billing.tax_amount|floatformat:2 }}</td>
+                    </tr>
+                  {% endif %}
+                  <tr>
+                    <td colspan="2" class="total-amount-label">{% trans "Total" %}</td>
+                    <td class="total-amount-value text-right">{{ billing.currency|default:"BHD" }} {{ amount|floatformat:2 }}</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}

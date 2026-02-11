@@ -1,0 +1,195 @@
+from django.urls import path
+
+from investor.views import purchase_request
+from jeweler.views import assets
+from jeweler.views import inventory
+from jeweler.views import jewelry_design
+from jeweler.views import manufacturing_request
+from jeweler.views import musharakah_contract_request
+
+urlpatterns = [
+    # Jewelry Design URLs
+    path(
+        "jewelry-designs/",
+        jewelry_design.JewelryDesignListCreateView.as_view(),
+        name="jewelry-designs-list-create",
+    ),
+    path(
+        "jewelry-designs/product/<str:pk>/",
+        jewelry_design.JewelryProductRetrieveUpdateDeleteAPIView.as_view(),
+        name="jewelry-designs-product-delete",
+    ),
+    path(
+        "jewelry-designs/available-for-collection/",
+        jewelry_design.JewelryDesignAvailableForCollectionList.as_view(),
+        name="jewelry-designs-available-for-collection",
+    ),
+    path(
+        "jewelry-designs/add-to-collection/",
+        jewelry_design.AddDesignsToCollectionAPIView.as_view(),
+        name="jewelry-designs-add-to-collection",
+    ),
+    path(
+        "jewelry-designs/collection-name/validate/",
+        jewelry_design.JewelryDesignCollectionNameExistsAPIView.as_view(),
+        name="precious-item-report-number-validate",
+    ),
+    path(
+        "jewelry-designs/<str:pk>/",
+        jewelry_design.JewelryDesignRetrieveUpdateDeleteAPIView.as_view(),
+        name="jewelry-designs-retrieve",
+    ),
+    # Musharakah Request URLs
+    # Endpoint to list jewelry designs eligible for creating a Musharakah Contract Request.
+    path(
+        "requests/musharakah-contract/jewelry-designs/",
+        jewelry_design.JewelryDesignList.as_view(),
+        name="jewelry-designs-list-create",
+    ),
+    path(
+        "requests/musharakah-contracts/",
+        musharakah_contract_request.MusharakahContractRequestListCreateView.as_view(),
+        name="musharakah-contract-requests-list-create",
+    ),
+    path(
+        "musharakah-contract/termination/settlement-summary/payment/",
+        musharakah_contract_request.SettlementSummaryPaymentCreateAPI.as_view(),
+        name="musharakah-contract-termination-settlement-payment",
+    ),
+    path(
+        "requests/musharakah-contracts/terminate-request/",
+        musharakah_contract_request.MusharakahContractTerminationRequestCreateAPIView.as_view(),
+        name="musharakah-contract-terminate-requests-create",
+    ),
+    path(
+        "requests/musharakah-contracts/<str:pk>/",
+        musharakah_contract_request.MusharakahContractRequestRetrieveAPIView.as_view(),
+        name="musharakah-contract-requests-retrieve",
+    ),
+    path(
+        "musharakah-contract/<str:pk>/download/",
+        musharakah_contract_request.MusharakahContractDownloadAPIView.as_view(),
+        name="musharakah-contract-download",
+    ),
+    path(
+        "musharakah-contracts/statistics/",
+        musharakah_contract_request.MusharakahContractStatisticsView.as_view(),
+        name="musharakah-contract-request-statistics",
+    ),
+    path(
+        "requests/mushraka-contract/quantity/",
+        musharakah_contract_request.MusharakahContractRequestQuantityBulkUpdateAPIView.as_view(),
+        name="musharakah-contract-request-quantity-bulk-update",
+    ),
+    path(
+        "requests/musharakah-contract/agreement/",
+        musharakah_contract_request.MusharakahContractAgreementPostAPIView.as_view(),
+        name="musharakah-contract-agreement",
+    ),
+    # Jeweler Assets including purchased or contributed URLs
+    path(
+        "assets/", assets.PurchasedAssetListView.as_view(), name="jeweler-assets-list"
+    ),
+    path(
+        "requests/precious-item/<str:pk>/",
+        purchase_request.PurchaseRequestDeleteRetrieveAPIView.as_view(),
+        name="precious-item-request-retrieve-delete",
+    ),
+    # Manufacturing Request related URLs
+    path(
+        "manufacturer/business/",
+        manufacturing_request.ManufacturerBusinessAccountListAPIView.as_view(),
+        name="manufacturer-business-list",
+    ),
+    path(
+        "requests/manufacturing/",
+        manufacturing_request.ManufacturingRequestListCreateAPIView.as_view(),
+        name="manufacturing-requests-list-create",
+    ),
+    path(
+        "requests/manufacturing/payment/",
+        manufacturing_request.ManufacturingRequestPaymentTransactionAPIView.as_view(),
+        name="manufacturing-requests-payment-create",
+    ),
+    path(
+        "requests/manufacturing/<str:pk>/",
+        manufacturing_request.BusinessManufacturingRequestRetrieveAPIView.as_view(),
+        name="manufacturing-requests-retrieve",
+    ),
+    path(
+        "requests/manufacturing-estimation/<str:pk>/status/",
+        manufacturing_request.ManufacturingEstimationRequestStatusUpdateAPIView.as_view(),
+        name="manufacturing-estimation-requests-status-patch",
+    ),
+    path(
+        "jewelry-design/musharakah-contracts/",
+        manufacturing_request.JewelryDesignMusharakahContractsListView.as_view(),
+        name="jewelry-design-musharakah-contracts",
+    ),
+    path(
+        "jewelry/product/inspections/<str:pk>/status/",
+        manufacturing_request.JewelryProductJewelerInspectionStatusAPIVew.as_view(),
+        name="jewelry-production-inspection-status-update",
+    ),
+    path(
+        "jewelry/productions/",
+        manufacturing_request.JewelryProductionAPIView.as_view(),
+        name="jewelry-productions-list",
+    ),
+    path(
+        "jewelry/productions/payment/",
+        manufacturing_request.ProductionPaymentCreateAPIView.as_view(),
+        name="jewelry-production-payment-create",
+    ),
+    path(
+        "jewelry/productions/<str:pk>/",
+        manufacturing_request.JewelryProductionRetrieveAPIView.as_view(),
+        name="jewelry-production-retrieve",
+    ),
+    path(
+        "jewelry/productions/product/<str:pk>/status/",
+        manufacturing_request.AllJewelryProductJewelerInspectionStatusAPIVew.as_view(),
+        name="jewelry-production-inspection-status",
+    ),
+    path(
+        "dashboard/insights/",
+        assets.DashboardGeneralInsightAPIView.as_view(),
+        name="jeweler-dashboard-insights",
+    ),
+    # Inventory URLs for Jeweler Mobile App
+    path(
+        "inventory/dashboard/",
+        inventory.JewelryInventoryDashboardAPIView.as_view(),
+        name="jeweler-inventory-dashboard",
+    ),
+    path(
+        "inventory/stocks/",
+        inventory.JewelryInventoryStockListAPIView.as_view(),
+        name="jeweler-inventory-stocks-list",
+    ),
+    path(
+        "inventory/insights/",
+        inventory.InventoryInsightsAPIView.as_view(),
+        name="inventory-insights",
+    ),
+    path(
+        "inventory/stocks/<str:pk>/",
+        inventory.JewelryInventoryStockRetrieveAPIView.as_view(),
+        name="jeweler-inventory-stocks-retrieve",
+    ),
+    path(
+        "inventory/marketplace/",
+        inventory.JewelryInventoryMarketplaceListAPIView.as_view(),
+        name="jeweler-inventory-marketplace-list",
+    ),
+    path(
+        "inventory/sales/",
+        inventory.JewelryProductSaleListAPIView.as_view(),
+        name="jeweler-inventory-sales-list",
+    ),
+    path(
+        "inventory/sales/<str:pk>/",
+        inventory.JewelryProductSaleRetrieveAPIView.as_view(),
+        name="jeweler-inventory-sales-retrieve",
+    ),
+]

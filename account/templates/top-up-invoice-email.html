@@ -1,0 +1,68 @@
+{% extends "base_email.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Top-Up Details" %}
+{% endblock %}
+
+{% block content %}
+  <h1 style="font-size: 24px; color: #333; margin-bottom: 20px; text-align: center;">
+    {% blocktrans with organization_name=organization_name %}
+      {{ organization_name }} Top-Up Details
+    {% endblocktrans %}
+  </h1>
+  <table style="width: 100%; max-width: 600px; margin: 0 auto; background-color: #ffffff; border:0px solid #ffffff; border-bottom: 0; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); border-collapse: collapse;" cellspacing="0" cellpadding="0">
+    <tr>
+      <td style="padding: 16px;">
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-bottom: 16px;">
+          {% trans "Dear Accounts Team," %}
+        </p>
+
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-bottom: 16px;">
+          {% trans "Below is the details of the top-up transaction." %}
+        </p>
+
+        <table style="font-size: 16px; color: #333; margin: 16px 0; width: 100%;">
+          <tr>
+            <td style="font-weight: bold; padding: 4px 0;">{% trans "Transaction Number" %}:</td>
+            <td style="padding: 4px 0;">{{ transaction_number }}</td>
+          </tr>
+          <tr>
+            <td style="font-weight: bold; padding: 4px 0;">{% trans "Business Name" %}:</td>
+            <td style="padding: 4px 0;">{{ business_name }}</td>
+          </tr>
+          <tr>
+            <td style="font-weight: bold; padding: 4px 0;">{% trans "Top-Up Method" %}:</td>
+            <td style="padding: 4px 0;">{{ transfer_via }}</td>
+          </tr>
+          <tr>
+            <td style="font-weight: bold; padding: 4px 0;">{% trans "Transaction Date" %}:</td>
+            <td style="padding: 4px 0;">{{ transaction_date }}</td>
+          </tr>
+          <tr>
+            <td style="font-weight: bold; padding: 4px 0;">{% trans "Amount" %}:</td>
+            <td style="padding: 4px 0;">{{ amount|floatformat:2 }} {{ currency|default:"BHD" }}</td>
+          </tr>
+          <tr>
+            <td style="font-weight: bold; padding: 4px 0;">{% trans "Service Fee" %}:</td>
+            <td style="padding: 4px 0;">{{ platform_fee|floatformat:2 }} {{ currency|default:"BHD" }}</td>
+          </tr>
+          <tr>
+            <td style="font-weight: bold; padding: 4px 0;">{% trans "Total Amount" %}:</td>
+            <td style="padding: 4px 0;">{{ total_amount|floatformat:2 }} {{ currency|default:"BHD" }}</td>
+          </tr>
+          <tr>
+            <td style="font-weight: bold; padding: 4px 0;">{% trans "Status" %}:</td>
+            <td style="padding: 4px 0;">{{ status }}</td>
+          </tr>
+        </table>
+
+
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-top: 15px;">
+          {% trans "Best regards," %}<br>
+          {% trans "Sooq Al Thahab System" %}
+        </p>
+      </td>
+    </tr>
+  </table>
+{% endblock %}

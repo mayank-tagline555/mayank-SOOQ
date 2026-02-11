@@ -1,0 +1,53 @@
+{% extends "base_email.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Subscription Grace Period Started" %}
+{% endblock %}
+
+{% block content %}
+  <h1 style="font-size: 24px; margin-bottom: 20px; text-align: center;">
+    {% trans "Grace Period Started" %}
+  </h1>
+  <table style="width: 100%; max-width: 600px; margin: 0 auto; background-color: #ffffff; border:0px solid #ffffff; border-bottom: 0; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); border-collapse: collapse;" cellspacing="0" cellpadding="0">
+    <tr>
+      <td style="padding: 16px;">
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-bottom: 16px;">
+          {% blocktrans %}Dear {{ user_name }},{% endblocktrans %}
+        </p>
+
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-bottom: 16px;">
+          {% blocktrans with plan_name=plan_name expiry_date=expiry_date %}
+            Your <strong>{{ plan_name }}</strong> subscription for <strong>{{ business_name }}</strong> has entered a grace period as it expired on <strong>{{ expiry_date }}</strong>.
+          {% endblocktrans %}
+        </p>
+
+        <div style="background-color: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 5px; margin: 20px 0;">
+          <p style="font-size: 16px; color: #856404; margin: 0;">
+            <strong>{% trans "Grace Period:" %}</strong>
+            {% blocktrans with days=grace_period_days %}
+              You have <strong>{{ days }} day{{ days|pluralize }}</strong> to renew your subscription before your access is completely suspended.
+            {% endblocktrans %}
+          </p>
+        </div>
+
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-bottom: 16px;">
+          {% trans "During this grace period, you may experience limited access to some features. To restore full access and avoid complete service interruption, please renew your subscription within the grace period." %}
+        </p>
+
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-bottom: 16px;">
+          {% trans "This grace period is provided as a courtesy to give you time to renew your subscription. We recommend taking action as soon as possible to ensure uninterrupted service." %}
+        </p>
+
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-bottom: 16px;">
+          {% trans "If you have any questions or need assistance with the renewal process, please contact our support team immediately." %}
+        </p>
+
+        <p style="font-size: 16px; color: #333; line-height: 1.6; margin-top: 15px;">
+          {% trans "Best regards," %}<br>
+          {% trans "The Sooq Al Thahab Team" %}
+        </p>
+      </td>
+    </tr>
+  </table>
+{% endblock %}

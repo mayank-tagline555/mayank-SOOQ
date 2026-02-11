@@ -1,0 +1,199 @@
+  {% extends "invoice/base_invoice.html" %}
+  {% load i18n static %}
+
+  {% block title %}{% trans "Top_Up_Receipt" %}{% endblock %}
+
+  {% block content %}
+  <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+    <tbody>
+      <tr>
+        <td align="center" colspan="3" style="padding-bottom: 10px;">
+          <h4 class="receipt-title">{% trans "TOP UP RECEIPT" %}</h4>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="3" style="padding-bottom: 40px">
+          <table class="billing-header-table">
+            <tr>
+              <td style="vertical-align: top; width: 33%;">
+                <div>
+                  <h6 class="section-title">{% trans "Transaction No" %}</h6>
+                  <span class="section-text">{{ transaction_number }}</span>
+                </div>
+              </td>
+              <td style="vertical-align: top;">
+                <div style="max-width: 150px; margin-left: auto;">
+                  <h6 class="section-title">{% trans "Made By" %}</h6>
+                  <strong class="section-text">{{ made_by.name|default_if_none:"N/A" }}</strong>
+                  <p class="section-text"><strong>{% trans "Country:" %}</strong> {% if made_by.country %}{{ made_by.country }}{% else %}N/A{% endif %}</p>
+                  <p class="section-text"><strong>{% trans "Phone:" %}</strong> {{ made_by.phone_number|default_if_none:"N/A" }}</p>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="3" style="border-left: 3px solid #ccb16a; padding-left: 20px; padding-top: 0; padding-bottom: 0; line-height: normal;">
+          <table cellpadding="0" cellspacing="0" style="width: 100%">
+            <tr>
+              <td style="padding-top: 0;  padding-bottom: 0; line-height: normal;">
+                <table cellpadding="0" cellspacing="0" style="width: 100%">
+                  <tr>
+                    <td colspan="2" style="font-weight: 800; font-size: 17px; padding-bottom: 10px; padding-top: 0;">
+                      Top-Up Wallet
+                    </td>
+                    <td align="right" style="padding-bottom: 10px">
+                      <div style="text-align: right;">
+                        {% if status == "APPROVED" or status == "SUCCESS" %}
+                          <span style="border: 2px solid #4CAF50; color: #4CAF50; padding: 5px 10px; display: inline-block;">
+                            {% trans "Completed" %}
+                          </span>
+                        {% elif status == "REJECTED" or status == "FAILED" %}
+                          <span style="border: 2px solid #EF4444; color: #EF4444; padding: 5px 10px; display: inline-block;">
+                            {% trans "Rejected" %}
+                          </span>
+                        {% else %}
+                          <span style="border: 2px solid #CCB16A; color: #CCB16A; padding: 5px 10px; display: inline-block;">
+                            {{ status|capfirst }}
+                          </span>
+                        {% endif %}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 11px 0;">
+                      {% trans "Top-Up method" %}
+                    </td>
+                    <td align="right" style="color: #1a1c21; text-align: right; padding: 10px 0; ">
+                      {% if transfer_via == "ORGANIZATION_ADMIN" %}
+                        Organization Admin
+                      {% else %}
+                        {{ transfer_via }}
+                      {% endif %}
+                    </td>
+                  </tr>
+                  {% if transfer_via != "ORGANIZATION_ADMIN" %}
+                    <tr>
+                      <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 11px 0;">
+                        {% trans "Payment Card Used" %}
+                      </td>
+                      <td align="right" style="color: #1a1c21; text-align: right; padding: 10px 0">
+                        {{ payment_card_number|default:"N/A" }}
+                      </td>
+                    </tr>
+                  {% endif %}
+                  <tr>
+                    <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 11px 0;">
+                      {% trans "Date" %}
+                    </td>
+                    <td align="right" style="color: #1a1c21; text-align: right; padding: 10px 0">
+                      {{ date }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 11px 0;">
+                      {% trans "Time" %}
+                    </td>
+                    <td align="right" style="color: #1a1c21; text-align: right; padding: 10px 0">
+                      {{ time }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 11px 0;">
+                      {% trans "Amount" %}
+                    </td>
+                    <td align="right" style="color: #1a1c21; text-align: right; padding: 10px 0">
+                      {{ billing.currency|default:"BHD" }} {{ amount|floatformat:2 }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 10px 0 20px;">
+                      {{ organization_details.name|default:"Organization" }} {% trans "Service Fee" %}
+                    </td>
+                    <td align="right" style="color: #1a1c21; text-align: right; padding: 10px 0 20px;">
+                      {{ billing.currency|default:"BHD" }} {{ platform_fee|floatformat:2}}
+                    </td>
+                  </tr>
+                  {% if status == "REJECTED" %}
+                    <tr>
+                      <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 10px 0 20px;">
+                        {% trans "Rejection Reason" %}
+                      </td>
+                      <td align="right" style="color: #1a1c21; text-align: right; padding: 10px 0 20px;">
+                        {{ remark|truncatechars:50 }}
+                      </td>
+                    </tr>
+                  {% endif %}
+                  <tr>
+                    <td colspan="2" style="font-weight: bold; color: #000000; padding: 9px 0 0; border-top: 1px solid #d7dae0; font-size: 15px; vertical-align: bottom; line-height: normal;">
+                      <p style="margin-bottom: -7px;">
+                        {% trans "Total Amount" %}
+                      </p>
+                    </td>
+                    <td align="right" style="font-weight: bold; color: #000000; text-align: right; padding: 9px 0 0; border-top: 1px solid #d7dae0; font-size: 15px; vertical-align: bottom; line-height: normal;">
+                      <p style="margin-bottom: -7px;">
+                      {{ billing.currency|default:"BHD" }} {{ total_amount }}
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td style="height: 47px;"></td>
+      </tr>
+      <tr>
+        <td colspan="3" style="border-left: 3px solid #ccb16a; padding-left: 20px;  padding-top: 0; padding-bottom: 0; line-height: normal;">
+          <table cellpadding="0" cellspacing="0" style="width: 100%">
+            <tr>
+              <td style="padding-top: 0;  padding-bottom: 0; line-height: normal;">
+                <table cellpadding="0" cellspacing="0" style="width: 100%">
+                  <tr>
+                    <td colspan="2" style="padding-bottom: 8px; padding-top: 0; font-weight: 700; font-size: 17px; color: #1A1C21;">
+                        {% trans "Balance Summary" %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 9px 0;">
+                      {% trans "Previous Balance" %}
+                    </td>
+                    <td align="right" style="color: #1a1c21; text-align: right; padding: 9px 0; ">
+                      {{ billing.currency|default:"BHD" }} {{ previous_balance|default:0|floatformat:2 }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="font-weight: 600; color: #5e6470; padding: 9px 0 16px;">
+                      {% trans "Amount Credited" %}
+                    </td>
+                    <td align="right" style="color: #1a1c21; text-align: right; padding: 9px 0 16px;">
+                      {{ billing.currency|default:"BHD" }}
+                      {% if status == "APPROVED" or status == "SUCCESS" %}
+                        {{ amount|default:0|floatformat:2 }}
+                      {% else %}
+                        {{ 0|floatformat:2 }}
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="font-weight: bold; color: #000000; padding: 16px 0 6px; border-top: 1px solid #d7dae0; font-size: 15px; line-height: normal;">
+                      {% trans "Current Balance" %}
+                    </td>
+                    <td align="right" style="font-weight: bold; color: #000000; text-align: right; padding: 16px 0 6px; border-top: 1px solid #d7dae0; font-size: 15px; line-height: normal;">
+                      {{ billing.currency|default:"BHD" }} {{ current_balance|default:0|floatformat:2 }}
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  {% endblock %}
