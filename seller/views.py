@@ -592,17 +592,19 @@ class UpdatePurchaseRequestStatusView(UpdateAPIView):
                 )
 
         # Set approved_at and invoice_number if approving
-        if purchase_request_status_approved:
-            if not purchase_request_instance.approved_at:
-                purchase_request_instance.approved_at = timezone.now()
-            if not purchase_request_instance.invoice_number:
-                mixin = ReceiptNumberMixin()
-                purchase_request_instance.invoice_number = (
-                    mixin.generate_receipt_number(
-                        users_business=purchase_request_instance.business,
-                        model_cls=PurchaseRequest,
-                    )
-                )
+            self._handle_approval_metadata(purchase_request_instance)
+        # if purchase_request_status_approved:
+        #     if not purchase_request_instance.approved_at:
+        #         purchase_request_instance.approved_at = timezone.now()
+        #     if not purchase_request_instance.invoice_number:
+        #         mixin = ReceiptNumberMixin()
+        #         purchase_request_instance.invoice_number = (
+        #             mixin.generate_receipt_number(
+        #                 users_business=purchase_request_instance.business,
+        #                 model_cls=PurchaseRequest,
+        #             )
+        #         )
+
 
         # Fetch requesting business (could be investor or jeweler) and seller business instances
         try:
@@ -897,7 +899,20 @@ class UpdatePurchaseRequestStatusView(UpdateAPIView):
             message=MESSAGES["purchase_request_updated"],
             data=purchase_request_serializer.data,
         )
+    
+    # Helper function to Set approved_at and invoice_number
+    def _handle_approval_metadata(self, purchase_request_instance):
+        if not purchase_request_instance.approved_at:
+            purchase_request_instance.approved_at = timezone.now()
 
+        if not purchase_request_instance.invoice_number:
+            mixin = ReceiptNumberMixin()
+            purchase_request_instance.invoice_number = (
+                mixin.generate_receipt_number(
+                    users_business=purchase_request_instance.business,
+                    model_cls=PurchaseRequest,
+                )
+            )
 
 class SellerDashboardApiView(ListAPIView):
     """
