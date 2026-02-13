@@ -685,7 +685,7 @@ class UpdatePurchaseRequestStatusView(UpdateAPIView):
             # Check if balance is sufficient
             # Total pending withdrawals for business
             total_withdrawal_pending_amount = get_total_withdrawal_pending_amount(
-                seller_business_instance
+                seller_business_instance ##########################################$$$$$$$$$$$
             )
 
             if (
