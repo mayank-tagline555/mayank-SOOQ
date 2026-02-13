@@ -685,7 +685,7 @@ class UpdatePurchaseRequestStatusView(UpdateAPIView):
             # Check if balance is sufficient
             # Total pending withdrawals for business
             total_withdrawal_pending_amount = get_total_withdrawal_pending_amount(
-                seller_business_instance ##########################################$$$$$$$$$$$
+                seller_business_instance  # from_wallet.business
             )
 
             if (
@@ -711,6 +711,7 @@ class UpdatePurchaseRequestStatusView(UpdateAPIView):
                     base_order_cost = purchase_request_instance.order_cost
 
                 # Get VAT rate from organization (same as used when creating the purchase request)
+
                 organization = purchase_request_instance.organization_id
                 vat_rate = organization.vat_rate if organization else Decimal("0.0000")
 
