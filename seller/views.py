@@ -684,36 +684,6 @@ class UpdatePurchaseRequestStatusView(UpdateAPIView):
 
             # Check if balance is sufficient
             # Total pending withdrawals for business
-            """
-            ⚠️ IMPORTANT NOTE ABOUT PENDING WITHDRAWAL BALANCE CHECK
-
-            Currently, the total pending withdrawal amount is calculated using
-            `seller_business_instance`, regardless of which business wallet is
-            actually being debited (`from_wallet`).
-
-            This works correctly in SALE requests because:
-                - The seller is the payer (from_wallet.business == seller_business_instance)
-
-            However, in PURCHASE requests:
-                - The investor/requesting business is the payer
-                - The pending withdrawal calculation still uses seller_business_instance
-                - This may lead to incorrect balance validation
-
-            Potential Risks:
-                - If the investor has large pending withdrawals, they may be able to
-                overspend because their own pending withdrawals are not considered.
-                - If the seller has large pending withdrawals, a valid purchase may be
-                incorrectly rejected.
-
-            Recommended Future Improvement:
-                The pending withdrawal calculation should use `from_wallet.business`
-                instead of `seller_business_instance` to ensure the balance check is
-                always performed against the actual payer.
-
-            This would ensure consistent financial validation across both
-            PURCHASE and SALE flows.
-
-            """
             total_withdrawal_pending_amount = get_total_withdrawal_pending_amount(
                 seller_business_instance  # from_wallet.business
             )
@@ -727,39 +697,8 @@ class UpdatePurchaseRequestStatusView(UpdateAPIView):
                 )
 
             # Atomic transaction
-            """
-            ⚠️ IMPORTANT NOTE ABOUT TRANSACTIONAL CONSISTENCY
-
-            Some approval-related operations (such as serial number creation/update,
-            approved_at assignment, and invoice generation) occur before entering
-            the `transaction.atomic()` block that handles wallet deduction and
-            transaction creation.
-
-            If an exception occurs during the wallet transfer process,
-            the financial transaction will roll back, but earlier operations
-            (serial number changes or metadata updates) will not.
-
-            This may lead to temporary data inconsistency between:
-                - Inventory state
-                - Purchase request metadata
-                - Financial transaction records
-
-            Future improvement:
-            Consider wrapping all approval-related operations inside a single
-            `transaction.atomic()` block to ensure full consistency.
-            """
-
             with transaction.atomic():
                 savepoint = transaction.savepoint()
-
-                """
-                NOTE:
-
-                `base_order_cost` is calculated differently for PURCHASE and SALE
-                requests (including premium for purchase).
-
-                Currently, this variable is not used in the subsequent logic.
-                """
 
                 if request_type_purchase:
                     # If purchase request, seller gets base order cost = order cost + premium
@@ -772,15 +711,6 @@ class UpdatePurchaseRequestStatusView(UpdateAPIView):
                     base_order_cost = purchase_request_instance.order_cost
 
                 # Get VAT rate from organization (same as used when creating the purchase request)
-                """
-                NOTE:
-
-                `purchase_request_instance.organization_id` is used here to retrieve
-                the organization for VAT calculation.
-
-                If this field returns an integer ID instead of an Organization object,
-                accessing `organization.vat_rate` will raise an AttributeError.
-                """
 
                 organization = purchase_request_instance.organization_id
                 vat_rate = organization.vat_rate if organization else Decimal("0.0000")
